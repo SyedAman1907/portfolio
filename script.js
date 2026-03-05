@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.classList.add('active');
                 
                 // Trigger nested animations (like progress bars or counters)
-                if (entry.target.classList.contains('skills-container')) {
-                    animateProgressBars();
+                if (entry.target.classList.contains('skills-grid')) {
+                    // Flashcards are styled to animate independently on float and hover
                 }
                 if (entry.target.classList.contains('about-content')) {
                     animateCounters();
@@ -70,14 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. Progress Bar Animation
-    function animateProgressBars() {
-        const progressFills = document.querySelectorAll('.progress-fill');
-        progressFills.forEach(fill => {
-            const percent = fill.getAttribute('data-percent');
-            fill.style.width = percent + '%';
-        });
-    }
+    // 4. (Removed Progress Bar Function - Not applicable for flashcards)
+
 
     // 5. Stat Counters Animation
     function animateCounters() {

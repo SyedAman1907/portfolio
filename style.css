@@ -521,33 +521,53 @@ h1, h2, h3 {
   color: var(--text-muted);
 }
 
-.skills-container {
+/* Skills - Flashcards */
+.skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  justify-content: center;
 }
 
-.skill-category {
+.skill-flashcard {
   background: var(--glass);
   backdrop-filter: var(--card-blur);
   -webkit-backdrop-filter: var(--card-blur);
-  border-radius: 15px;
   border: 1px solid var(--glass-border);
-  padding: 1.5rem;
-}
-
-.progress-bar {
-  height: 4px;
-  background: rgba(255,255,255,0.05);
   border-radius: 10px;
-  overflow: hidden;
-  margin-top: 5px;
+  padding: 1rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  animation: weightlessFloat 8s ease-in-out infinite alternate;
 }
 
-.progress-fill {
-  height: 100%;
-  background: var(--accent-gold);
-  width: 0;
-  transition: width 1.5s ease-out;
+.skill-flashcard:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-gold);
+  background: var(--glass); 
+  box-shadow: 0 5px 15px var(--accent-gold-glow);
+}
+
+.skill-icon {
+  font-size: 1.6rem;
+  color: var(--text-main);
+  transition: var(--transition);
+}
+
+.skill-flashcard:hover .skill-icon {
+  color: var(--accent-gold);
+  transform: scale(1.1);
+}
+
+.skill-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: center;
 }
 
 .projects-grid {
@@ -816,18 +836,9 @@ footer {
   font-size: 1.2rem;
 }
 
-/* Skills - Compact */
-.skills-container {
-  gap: 1.5rem;
-}
-
-.skill-category {
-  padding: 1.5rem;
-}
-
-.skill-category h3 {
-  font-size: 1rem;
-  margin-bottom: 1.2rem;
+/* Skills - Flashcards Grid adjustment */
+.skills-grid {
+  gap: 1rem;
 }
 
 /* Projects - Smaller Cleaner Cards */
