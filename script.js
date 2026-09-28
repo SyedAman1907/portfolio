@@ -5,7 +5,29 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Typing Effect for Hero Roles
+    // 1. Menu Management
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinksContainer = document.getElementById('nav-links');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    if (menuToggle && navLinksContainer) {
+        menuToggle.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksContainer.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+    }
+
+    // 2. Typing Effect for Hero Roles
     const rolesElement = document.getElementById('roles');
     const roles = ['Google Student Ambassador', 'CS Undergraduate @ RGM', 'Java Developer', 'Full-Stack Developer'];
     let roleIndex = 0;

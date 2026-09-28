@@ -1,0 +1,46 @@
+.name{
+    color: red;
+    border : 2px solid black;
+    padding: 10px;
+    margin: 10px;
+    background-color: aqua;
+
+}
+.table {
+    border: 3px solid rgb(243, 24, 24);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 1px solid black;
+    padding: 10px;
+}
+.form{
+    padding: 10px 5px 10px 5px;
+    border: 3px solid rgb(243, 24, 24);
+    border-radius: 10px;
+    margin: 5px;   
+    word-break: break-all;
+    word-spacing: 2px;
+    padding:2%;
+    background-color: aqua; 
+    margin-bottom: 50%;
+    margin-top: 50%;
+    margin-left:35%;
+
+
+}
+.form input{
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid rgb(243, 24, 24);
+    border-radius: 10px;
+    background-color: rgb(255,255,255);
+}
+.submit{
+    margin :10px;
+}
