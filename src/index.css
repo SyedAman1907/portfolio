@@ -404,3 +404,57 @@ button {
     width: 100%;
   }
 }
+
+/* Spinner Animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Contact Form Input Styles */
+.form-input-field {
+  width: 100%;
+  padding: 0.78rem 0.95rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xs);
+  color: #ffffff;
+  font-size: 16px; /* Prevents mobile browser auto-zoom */
+  outline: none;
+  font-family: var(--font-body);
+  transition: all 0.22s ease;
+}
+
+.form-input-field:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.form-input-field:focus {
+  border-color: var(--highlight-green) !important;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.form-input-field.input-error {
+  border-color: #f87171 !important;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.18);
+}
+
+.form-input-field:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-field-error {
+  font-size: 0.78rem;
+  color: #f87171;
+  margin-top: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
