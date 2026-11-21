@@ -78,7 +78,7 @@ export default function Contact() {
       const result = await sendContactEmail(formData);
       setStatus('success');
       setSuccessMessage(
-        result.message || 'Thank you! Your message has been sent successfully to Shaik Musheera.'
+        result.message || 'Thank you! Your message has been sent successfully to Syed Aman Mirzanullah.'
       );
       if (result.fallbackToMailto && result.mailtoUrl) {
         setMailtoFallback(result.mailtoUrl);
@@ -514,7 +514,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      placeholder="Hello Musheera, I came across your portfolio and would like to connect regarding..."
+                      placeholder="Hello Aman, I came across your portfolio and would like to connect regarding..."
                       className="form-input-brutal"
                       rows={4}
                       aria-invalid={!!errors.message}

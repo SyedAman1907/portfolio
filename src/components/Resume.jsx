@@ -97,7 +97,7 @@ export default function Resume() {
                   marginBottom: '0.25rem'
                 }}
               >
-                Shaik_Musheera_Resume.pdf
+                Syed_Aman_Mirzanullah_Resume.pdf
               </h3>
 
               <div
@@ -122,7 +122,7 @@ export default function Resume() {
               >
                 <a
                   href={personal.resumePdf}
-                  download="Shaik_Musheera_Resume.pdf"
+                  download="Syed_Aman_Mirzanullah_Resume.pdf"
                   className="btn-brutal btn-brutal-lime btn-brutal-sm"
                   style={{ width: '100%' }}
                 >

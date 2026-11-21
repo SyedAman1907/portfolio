@@ -1,11 +1,12 @@
 export const portfolioData = {
   personal: {
-    name: "Shaik Musheera",
-    shortName: "Musheera",
-    monogram: "SM",
+    name: "Syed Aman Mirzanullah",
+    shortName: "Syed Aman",
+    monogram: "SA",
     headline: "B.Tech Student | Web Developer | Technology Enthusiast",
     roles: [
       "Web Developer",
+      "Full Stack Developer",
       "B.Tech CSE Student",
       "Frontend Developer",
       "Technology Enthusiast",
@@ -29,9 +30,9 @@ export const portfolioData = {
     githubUsername: "SyedAman1907",
     githubUrl: "https://github.com/SyedAman1907",
     linkedinUrl: "https://www.linkedin.com/in/syed-aman-593b97371",
-    profileImage: "/images/aman-pic.jpg",
-    aboutImage: "/images/aman-image.jpg",
-    resumePdf: "/resume/Shaik_Musheera_Resume.pdf",
+    profileImage: "/images/aman-pic.png",
+    aboutImage: "/images/aman-image.png",
+    resumePdf: "/resume/Syed_Aman_Mirzanullah_Resume.pdf",
     stats: [
       { label: "Academic CGPA", value: "8.4 / 10", subtext: "B.Tech Computer Science & Engg" },
       { label: "Quiz Leaderboard", value: "4th Place", subtext: "MongoDB × ICT Academy Immersion" },

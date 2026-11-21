@@ -140,7 +140,7 @@ export default function Navbar() {
               letterSpacing: '-0.02em'
             }}
           >
-            {personal.monogram || 'SM'}
+            {personal.monogram || 'SA'}
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -278,7 +278,7 @@ export default function Navbar() {
           {/* Resume CTA (Desktop) */}
           <a
             href={personal.resumePdf}
-            download="Shaik_Musheera_Resume.pdf"
+            download="Syed_Aman_Mirzanullah_Resume.pdf"
             className="btn-brutal btn-brutal-lime btn-brutal-sm"
             style={{ display: 'none' }}
             id="nav-resume-btn"
@@ -377,7 +377,7 @@ export default function Navbar() {
           >
             <a
               href={personal.resumePdf}
-              download="Shaik_Musheera_Resume.pdf"
+              download="Syed_Aman_Mirzanullah_Resume.pdf"
               className="btn-brutal btn-brutal-lime"
               style={{ width: '100%' }}
               onClick={() => setMobileMenuOpen(false)}

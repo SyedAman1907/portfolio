@@ -212,7 +212,7 @@ export default function Hero() {
 
               <a
                 href={personal.resumePdf}
-                download="Shaik_Musheera_Resume.pdf"
+                download="Syed_Aman_Mirzanullah_Resume.pdf"
                 className="btn-brutal btn-brutal-ghost"
               >
                 <FileText size={17} />
@@ -335,11 +335,13 @@ export default function Hero() {
                   <img
                     src={personal.profileImage}
                     alt={personal.name}
+                    className="neobrutal-img-hover"
                     onError={() => setImageError(true)}
                     style={{
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover'
+                      objectFit: 'cover',
+                      objectPosition: 'center 20%'
                     }}
                   />
                 ) : (

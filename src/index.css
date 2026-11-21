@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SHAIK MUSHEERA — ADVANCED NEOBRUTALIST PORTFOLIO DESIGN SYSTEM
+   SYED AMAN MIRZANULLAH — ADVANCED NEOBRUTALIST PORTFOLIO DESIGN SYSTEM
    Palette: High-contrast Monochrome with Electric Lime (#C7FF00) & Cobalt Blue (#3454FF)
    Aesthetic: Bold typography, strong 2px-3px borders, hard offset shadows,
    geometric grids, editorial hierarchy, and responsive micro-interactions.
@@ -474,6 +474,16 @@ textarea.form-input-brutal {
   border: 1.5px solid #000000;
   animation: statusPulse 2s infinite ease-in-out;
   flex-shrink: 0;
+}
+
+/* Image Reveal & Micro-Interactions */
+.neobrutal-img-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  will-change: transform;
+}
+
+.neobrutal-img-hover:hover {
+  transform: scale(1.04);
 }
 
 /* Stacking Card Utility */

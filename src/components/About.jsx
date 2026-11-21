@@ -77,6 +77,7 @@ export default function About() {
                   <img
                     src={personal.aboutImage}
                     alt={personal.name}
+                    className="neobrutal-img-hover"
                     onError={() => setImageError(true)}
                     style={{
                       width: '100%',

@@ -10,7 +10,7 @@ export default function Footer() {
   };
 
   const tickerItems = [
-    'SHAIK MUSHEERA',
+    'SYED AMAN MIRZANULLAH',
     'WEB DEVELOPER',
     'B.TECH CSE @ RGMCET',
     'GOOGLE STUDENT AMBASSADOR',

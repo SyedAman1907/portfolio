@@ -1,5 +1,5 @@
 /**
- * Secure Email Service for Shaik Musheera's Portfolio
+ * Secure Email Service for Syed Aman Mirzanullah's Portfolio
  * Handles email delivery via client-side email dispatch (Web3Forms / Formspree / EmailJS)
  * without exposing SMTP credentials or private server secrets.
  */
@@ -84,7 +84,7 @@ export async function sendContactEmail({ name, email, subject, message, botcheck
       if (response.ok && data.success) {
         return {
           success: true,
-          message: 'Thank you! Your message has been sent directly to Shaik Musheera. You will receive a response shortly.'
+          message: 'Thank you! Your message has been sent directly to Syed Aman Mirzanullah. You will receive a response shortly.'
         };
       }
 
@@ -118,7 +118,7 @@ export async function sendContactEmail({ name, email, subject, message, botcheck
       if (response.ok) {
         return {
           success: true,
-          message: 'Thank you! Your inquiry has been sent to Shaik Musheera.'
+          message: 'Thank you! Your inquiry has been sent to Syed Aman Mirzanullah.'
         };
       }
 
