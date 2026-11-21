@@ -1,5 +1,5 @@
 import React from 'react';
-import BackgroundAnimation from './components/BackgroundAnimation';
+import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -16,13 +16,13 @@ import Footer from './components/Footer';
 export default function App() {
   return (
     <div style={{ position: 'relative', minHeight: '100vh', overflowX: 'hidden' }}>
-      {/* Dynamic Animated Ambient Background (Dark/Light Responsive) */}
-      <BackgroundAnimation />
+      {/* Desktop Custom Follower Cursor */}
+      <CustomCursor />
 
-      {/* Sticky Glassmorphic Navbar with Theme Switcher & ScrollSpy */}
+      {/* Neobrutalist Sticky Navbar with Animated Sliding Indicator */}
       <Navbar />
 
-      {/* Main Portfolio Sections */}
+      {/* Main Experience Flow */}
       <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <About />
@@ -36,7 +36,7 @@ export default function App() {
         <Contact />
       </main>
 
-      {/* Minimal Footer */}
+      {/* Neobrutalist Marquee Footer */}
       <Footer />
     </div>
   );

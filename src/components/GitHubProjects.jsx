@@ -1,6 +1,8 @@
 import React from 'react';
 import { useGitHubProjects } from '../hooks/useGitHubProjects';
 import { portfolioData } from '../data/portfolioData';
+import ScrambleText from './ScrambleText';
+import { SkeletonCard } from './Skeleton';
 import {
   Github,
   Star,
@@ -9,7 +11,8 @@ import {
   Calendar,
   AlertCircle,
   FolderGit2,
-  ArrowRight
+  ArrowRight,
+  ExternalLink
 } from 'lucide-react';
 
 const FILTER_TABS = ['All', 'AI / ML', 'Full Stack', 'Frontend', 'Python', 'JavaScript'];
@@ -34,20 +37,20 @@ export default function GitHubProjects() {
   };
 
   return (
-    <section id="github-projects" className="section" style={{ paddingTop: '1.5rem' }}>
+    <section id="github-projects" className="section" style={{ borderTop: 'var(--border-width) solid var(--border-color)', paddingTop: '4rem' }}>
       <div className="container">
-        {/* Compact Glass Header */}
+        {/* Compact Neobrutal Header Box */}
         <div
-          className="glass-card"
+          className="neobrutal-card"
           style={{
-            padding: '1.45rem 1.75rem',
-            marginBottom: '1.5rem',
+            padding: '1.75rem 2rem',
+            marginBottom: '2.25rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '1rem',
-            border: '1px solid var(--border-card)'
+            gap: '1.25rem',
+            background: 'var(--bg-surface)'
           }}
         >
           <div>
@@ -56,22 +59,23 @@ export default function GitHubProjects() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                fontSize: '0.78rem',
+                fontSize: '0.8rem',
                 fontFamily: 'var(--font-mono)',
-                color: 'var(--text-muted)',
+                fontWeight: 800,
+                color: 'var(--text-dim)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.04em',
-                marginBottom: '0.25rem'
+                marginBottom: '0.35rem'
               }}
             >
-              <Github size={14} />
-              <span>Directly Connected to @{personal.githubUsername}</span>
+              <Github size={15} />
+              <span>LIVE REPOSITORY FEED • @{personal.githubUsername}</span>
             </div>
-            <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-main)', lineHeight: 1.2 }}>
-              GitHub <span className="monochrome-gradient">Repositories</span>
+            <h3 style={{ fontSize: '1.75rem', fontWeight: 900, textTransform: 'uppercase', lineHeight: 1.15 }}>
+              <ScrambleText text="OPEN-SOURCE REPOSITORIES" />
             </h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-              Real-time open source repositories, developer projects, and active experiments.
+            <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+              Dynamic synchronization with active GitHub codebases, public tools, and experiments.
             </p>
           </div>
 
@@ -79,11 +83,11 @@ export default function GitHubProjects() {
             href={personal.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-outline btn-sm"
+            className="btn-brutal btn-brutal-primary btn-brutal-sm"
           >
             <Github size={15} />
             <span>@{personal.githubUsername}</span>
-            <ArrowRight size={13} />
+            <ExternalLink size={13} />
           </a>
         </div>
 
@@ -92,10 +96,10 @@ export default function GitHubProjects() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.45rem',
-            marginBottom: '1.5rem',
+            gap: '0.55rem',
+            marginBottom: '2rem',
             overflowX: 'auto',
-            paddingBottom: '0.35rem',
+            paddingBottom: '0.5rem',
             WebkitOverflowScrolling: 'touch'
           }}
         >
@@ -105,85 +109,26 @@ export default function GitHubProjects() {
               <button
                 key={tab}
                 onClick={() => setActiveFilter(tab)}
-                style={{
-                  padding: '0.4rem 0.95rem',
-                  borderRadius: 'var(--radius-full)',
-                  fontSize: '0.82rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontWeight: isActive ? 700 : 500,
-                  transition: 'all 0.2s ease',
-                  whiteSpace: 'nowrap',
-                  cursor: 'pointer',
-                  border: isActive ? '1px solid var(--accent-primary)' : '1px solid var(--border-card)',
-                  background: isActive ? 'var(--accent-primary)' : 'var(--bg-card)',
-                  color: isActive ? 'var(--accent-contrast)' : 'var(--text-muted)'
-                }}
+                className={`btn-brutal btn-brutal-sm ${isActive ? 'btn-brutal-lime' : 'btn-brutal-ghost'}`}
+                style={{ whiteSpace: 'nowrap' }}
               >
-                {tab}
+                <span>{tab}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Loading Skeleton */}
+        {/* Loading Skeleton Shimmer Placeholders */}
         {loading && (
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-              gap: '1.15rem'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+              gap: '1.35rem'
             }}
           >
-            {[1, 2, 3, 4].map((idx) => (
-              <div
-                key={idx}
-                className="glass-card"
-                style={{
-                  padding: '1.25rem',
-                  height: '180px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  opacity: 0.6
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      height: '16px',
-                      width: '60%',
-                      background: 'var(--tag-bg)',
-                      borderRadius: '4px',
-                      marginBottom: '0.75rem'
-                    }}
-                  />
-                  <div
-                    style={{
-                      height: '12px',
-                      width: '85%',
-                      background: 'var(--tag-bg)',
-                      borderRadius: '3px',
-                      marginBottom: '0.45rem'
-                    }}
-                  />
-                  <div
-                    style={{
-                      height: '12px',
-                      width: '65%',
-                      background: 'var(--tag-bg)',
-                      borderRadius: '3px'
-                    }}
-                  />
-                </div>
-                <div
-                  style={{
-                    height: '24px',
-                    width: '100%',
-                    background: 'var(--tag-bg)',
-                    borderRadius: '4px'
-                  }}
-                />
-              </div>
+            {[1, 2, 3, 4, 5, 6].map((idx) => (
+              <SkeletonCard key={idx} height="230px" />
             ))}
           </div>
         )}
@@ -191,27 +136,27 @@ export default function GitHubProjects() {
         {/* Error Fallback */}
         {!loading && error && (
           <div
-            className="glass-card"
+            className="neobrutal-card"
             style={{
-              padding: '1.75rem',
+              padding: '2rem',
               textAlign: 'center',
-              maxWidth: '540px',
+              maxWidth: '560px',
               margin: '0 auto',
-              border: '1px solid var(--border-card)'
+              background: 'var(--bg-card)'
             }}
           >
-            <AlertCircle size={28} color="var(--text-main)" style={{ margin: '0 auto 0.65rem' }} />
-            <h4 style={{ fontSize: '1.05rem', color: 'var(--text-main)', marginBottom: '0.35rem' }}>
-              Repositories temporarily cached or rate-limited
+            <AlertCircle size={32} color="var(--accent-lime)" style={{ margin: '0 auto 0.75rem' }} />
+            <h4 style={{ fontSize: '1.2rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.35rem' }}>
+              Repositories Cache Standby
             </h4>
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
-              Inspect live repositories and codebases directly on GitHub:
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.25rem' }}>
+              Direct connection reached a temporary rate limit. Explore live repositories on GitHub:
             </p>
             <a
               href={personal.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary btn-sm"
+              className="btn-brutal btn-brutal-lime btn-brutal-sm"
             >
               <Github size={15} />
               <span>Explore @{personal.githubUsername}</span>
@@ -224,82 +169,71 @@ export default function GitHubProjects() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-              gap: '1.15rem'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+              gap: '1.35rem'
             }}
           >
             {filteredProjects.map((repo) => (
               <div
                 key={repo.id}
-                className="glass-card"
+                className="neobrutal-card"
                 style={{
-                  padding: '1.35rem',
+                  padding: '1.5rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  border: '1px solid var(--border-card)'
+                  background: 'var(--bg-card)'
                 }}
               >
                 <div>
-                  {/* Top: Language & Stars */}
+                  {/* Top Bar: Language & Metrics */}
                   <div
                     style={{
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      marginBottom: '0.65rem'
+                      marginBottom: '0.85rem'
                     }}
                   >
-                    <div
+                    <span
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.4rem',
+                        gap: '0.35rem',
                         fontSize: '0.78rem',
                         fontFamily: 'var(--font-mono)',
-                        color: 'var(--text-secondary)'
+                        fontWeight: 800,
+                        background: 'var(--accent-lime)',
+                        color: '#000000',
+                        border: '1.5px solid var(--border-color)',
+                        padding: '0.15rem 0.55rem'
                       }}
                     >
-                      <Code2 size={14} />
+                      <Code2 size={13} />
                       <span>{repo.language}</span>
-                    </div>
+                    </span>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <span
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.25rem',
-                          fontSize: '0.78rem',
-                          color: 'var(--text-muted)'
-                        }}
-                      >
-                        <Star size={12} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 700 }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <Star size={13} />
                         <span>{repo.stars}</span>
                       </span>
-                      <span
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.25rem',
-                          fontSize: '0.78rem',
-                          color: 'var(--text-muted)'
-                        }}
-                      >
-                        <GitFork size={12} />
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <GitFork size={13} />
                         <span>{repo.forks}</span>
                       </span>
                     </div>
                   </div>
 
-                  {/* Repo Title */}
+                  {/* Title */}
                   <h4
                     style={{
-                      fontSize: '1.1rem',
-                      fontWeight: 700,
-                      color: 'var(--text-main)',
-                      marginBottom: '0.35rem',
-                      wordBreak: 'break-word'
+                      fontSize: '1.2rem',
+                      fontWeight: 800,
+                      color: 'var(--text-primary)',
+                      marginBottom: '0.45rem',
+                      wordBreak: 'break-word',
+                      lineHeight: 1.2
                     }}
                   >
                     {repo.name}
@@ -308,10 +242,10 @@ export default function GitHubProjects() {
                   {/* Description */}
                   <p
                     style={{
-                      fontSize: '0.86rem',
-                      lineHeight: 1.55,
+                      fontSize: '0.88rem',
+                      lineHeight: 1.6,
                       color: 'var(--text-muted)',
-                      marginBottom: '0.85rem'
+                      marginBottom: '1rem'
                     }}
                   >
                     {repo.description}
@@ -324,20 +258,19 @@ export default function GitHubProjects() {
                         display: 'flex',
                         flexWrap: 'wrap',
                         gap: '0.35rem',
-                        marginBottom: '0.85rem'
+                        marginBottom: '1rem'
                       }}
                     >
                       {repo.topics.slice(0, 4).map((topic, tIdx) => (
                         <span
                           key={tIdx}
                           style={{
-                            fontSize: '0.72rem',
+                            fontSize: '0.74rem',
                             fontFamily: 'var(--font-mono)',
                             padding: '0.15rem 0.5rem',
-                            borderRadius: 'var(--radius-full)',
-                            background: 'var(--tag-bg)',
-                            border: '1px solid var(--border-subtle)',
-                            color: 'var(--text-muted)'
+                            border: '1.5px solid var(--border-color)',
+                            background: 'var(--bg-surface)',
+                            fontWeight: 600
                           }}
                         >
                           #{topic}
@@ -347,11 +280,11 @@ export default function GitHubProjects() {
                   )}
                 </div>
 
-                {/* Footer */}
+                {/* Footer Action */}
                 <div
                   style={{
-                    paddingTop: '0.75rem',
-                    borderTop: '1px solid var(--border-subtle)',
+                    paddingTop: '0.85rem',
+                    borderTop: '2px solid var(--border-color)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -364,9 +297,10 @@ export default function GitHubProjects() {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.35rem',
-                      fontSize: '0.75rem',
+                      fontSize: '0.76rem',
                       color: 'var(--text-dim)',
-                      fontFamily: 'var(--font-mono)'
+                      fontFamily: 'var(--font-mono)',
+                      fontWeight: 700
                     }}
                   >
                     <Calendar size={12} />
@@ -377,11 +311,11 @@ export default function GitHubProjects() {
                     href={repo.htmlUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-outline btn-sm"
-                    style={{ padding: '0.3rem 0.7rem', fontSize: '0.8rem' }}
+                    className="btn-brutal btn-brutal-sm btn-brutal-ghost"
+                    style={{ padding: '0.3rem 0.75rem', fontSize: '0.82rem' }}
                   >
-                    <Github size={13} />
-                    <span>Code</span>
+                    <Github size={14} />
+                    <span>View Code</span>
                   </a>
                 </div>
               </div>
@@ -392,20 +326,21 @@ export default function GitHubProjects() {
         {/* Empty State */}
         {!loading && !error && filteredProjects.length === 0 && (
           <div
-            className="glass-card"
+            className="neobrutal-card"
             style={{
-              padding: '1.75rem',
+              padding: '2.5rem',
               textAlign: 'center',
-              maxWidth: '420px',
-              margin: '0 auto'
+              maxWidth: '440px',
+              margin: '0 auto',
+              background: 'var(--bg-card)'
             }}
           >
-            <FolderGit2 size={28} color="var(--text-main)" style={{ margin: '0 auto 0.5rem' }} />
-            <h4 style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '0.25rem' }}>
+            <FolderGit2 size={32} color="var(--accent-lime)" style={{ margin: '0 auto 0.75rem' }} />
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.35rem' }}>
               No repositories in this category
             </h4>
-            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)' }}>
-              Check "All" or browse directly on GitHub.
+            <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)' }}>
+              Select "All" or browse directly on GitHub.
             </p>
           </div>
         )}

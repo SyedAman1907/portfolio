@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { portfolioData } from '../data/portfolioData';
+import ScrambleText from './ScrambleText';
 import {
   Code,
   Code2,
@@ -68,30 +69,30 @@ export default function Skills() {
     : skills.items.filter(item => item.category === activeCategory);
 
   return (
-    <section id="skills" className="section">
+    <section id="skills" className="section" style={{ borderTop: 'var(--border-width) solid var(--border-color)' }}>
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-tag">
-            <span>// 02. TECHNICAL COMPETENCIES</span>
+          <div className="section-tag-box">
+            <span>// 02. COMPETENCIES</span>
           </div>
           <h2 className="section-title">
-            Technical <span className="monochrome-gradient">Skills</span>
+            <ScrambleText text="TECHNICAL SKILLS" />
           </h2>
           <p className="section-subtitle">
-            A comprehensive overview of programming languages, frontend/backend technologies, databases, and developer workflows I actively use.
+            Categorized toolkit of programming languages, frontend/backend engineering, database architectures, and developer workflows.
           </p>
         </div>
 
-        {/* Category Filter Tabs */}
+        {/* Category Filter Pills */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            gap: '0.45rem',
-            marginBottom: '2.25rem'
+            gap: '0.65rem',
+            marginBottom: '2.75rem'
           }}
         >
           {skills.categories.map((cat) => {
@@ -100,32 +101,20 @@ export default function Skills() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                style={{
-                  padding: '0.5rem 1rem',
-                  borderRadius: 'var(--radius-full)',
-                  fontSize: '0.84rem',
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: isActive ? 700 : 500,
-                  background: isActive ? 'var(--accent-primary)' : 'var(--bg-card)',
-                  color: isActive ? 'var(--accent-contrast)' : 'var(--text-muted)',
-                  border: isActive ? '1px solid var(--accent-primary)' : '1px solid var(--border-card)',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                  boxShadow: isActive ? 'var(--shadow-card)' : 'none'
-                }}
+                className={`btn-brutal btn-brutal-sm ${isActive ? 'btn-brutal-lime' : 'btn-brutal-ghost'}`}
               >
-                {cat.label}
+                <span>{cat.label}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Interactive Skills Grid */}
+        {/* Neobrutalist Skills Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 255px), 1fr))',
-            gap: '1.15rem'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 265px), 1fr))',
+            gap: '1.25rem'
           }}
         >
           {filteredItems.map((item, index) => {
@@ -134,73 +123,74 @@ export default function Skills() {
             return (
               <div
                 key={`${item.name}-${index}`}
-                className="glass-card"
+                className="neobrutal-card"
                 style={{
-                  padding: '1.25rem',
+                  padding: '1.45rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  gap: '0.85rem'
+                  background: 'var(--bg-card)'
                 }}
               >
                 <div>
-                  {/* Top Bar: Icon & Level Tag */}
+                  {/* Top Bar: Icon & Level Badge */}
                   <div
                     style={{
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      marginBottom: '0.85rem'
+                      marginBottom: '1rem'
                     }}
                   >
                     <div
                       style={{
-                        width: '38px',
-                        height: '38px',
-                        borderRadius: 'var(--radius-sm)',
-                        background: 'var(--tag-bg)',
-                        border: '1px solid var(--tag-border)',
+                        width: '42px',
+                        height: '42px',
+                        background: 'var(--accent-lime)',
+                        color: '#000000',
+                        border: '2px solid var(--border-color)',
+                        boxShadow: '2.5px 2.5px 0px var(--shadow-color)',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'var(--text-main)'
+                        justifyContent: 'center'
                       }}
                     >
-                      <IconComponent size={20} />
+                      <IconComponent size={22} />
                     </div>
 
                     <span
                       style={{
-                        fontSize: '0.72rem',
+                        fontSize: '0.74rem',
                         fontFamily: 'var(--font-mono)',
-                        padding: '0.18rem 0.55rem',
-                        borderRadius: 'var(--radius-full)',
-                        background: 'var(--tag-bg)',
-                        border: '1px solid var(--border-subtle)',
-                        color: 'var(--text-dim)',
-                        fontWeight: 600
+                        fontWeight: 800,
+                        padding: '0.2rem 0.6rem',
+                        border: '1.5px solid var(--border-color)',
+                        background: 'var(--bg-surface)',
+                        color: 'var(--text-primary)',
+                        textTransform: 'uppercase'
                       }}
                     >
                       {item.level}
                     </span>
                   </div>
 
-                  {/* Skill Name */}
+                  {/* Skill Title */}
                   <h3
                     style={{
-                      fontSize: '1.02rem',
-                      fontWeight: 700,
-                      color: 'var(--text-main)',
-                      marginBottom: '0.35rem'
+                      fontSize: '1.15rem',
+                      fontWeight: 800,
+                      color: 'var(--text-primary)',
+                      marginBottom: '0.4rem',
+                      letterSpacing: '-0.01em'
                     }}
                   >
                     {item.name}
                   </h3>
 
-                  {/* Skill Description */}
+                  {/* Description */}
                   <p
                     style={{
-                      fontSize: '0.82rem',
+                      fontSize: '0.86rem',
                       color: 'var(--text-muted)',
                       lineHeight: 1.55
                     }}

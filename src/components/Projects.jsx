@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { portfolioData } from '../data/portfolioData';
+import ScrambleText from './ScrambleText';
 import {
   Github,
   ExternalLink,
   Layers,
-  BrainCircuit,
   ArrowRight,
   CheckCircle2,
   X,
-  Code2,
+  Info,
   Terminal,
-  Sparkles,
-  Info
+  Sparkles
 } from 'lucide-react';
 
 export default function Projects() {
@@ -26,29 +25,29 @@ export default function Projects() {
     : featuredProjects.filter(p => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section" style={{ borderTop: 'var(--border-width) solid var(--border-color)' }}>
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-tag">
+          <div className="section-tag-box">
             <span>// 03. FEATURED BUILDS</span>
           </div>
           <h2 className="section-title">
-            Engineered <span className="monochrome-gradient">Projects</span>
+            <ScrambleText text="FEATURED PROJECTS" />
           </h2>
           <p className="section-subtitle">
-            Selected full-stack and web applications built with a focus on modern component architecture, clean APIs, and user-centric problem solving.
+            Engineered web applications and software systems showcased with a stacking-card scroll interaction.
           </p>
         </div>
 
-        {/* Category Filter Pills */}
+        {/* Category Filters */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '0.5rem',
-            marginBottom: '2.5rem'
+            gap: '0.75rem',
+            marginBottom: '3rem'
           }}
         >
           {categories.map((cat) => {
@@ -57,257 +56,319 @@ export default function Projects() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                style={{
-                  padding: '0.45rem 1rem',
-                  borderRadius: 'var(--radius-full)',
-                  fontSize: '0.84rem',
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: isActive ? 700 : 500,
-                  background: isActive ? 'var(--accent-primary)' : 'var(--bg-card)',
-                  color: isActive ? 'var(--accent-contrast)' : 'var(--text-muted)',
-                  border: isActive ? '1px solid var(--accent-primary)' : '1px solid var(--border-card)',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
+                className={`btn-brutal btn-brutal-sm ${isActive ? 'btn-brutal-lime' : 'btn-brutal-ghost'}`}
               >
-                {cat}
+                <span>{cat}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Projects SaaS Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
-            gap: '1.5rem'
-          }}
-        >
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="glass-card"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                padding: '1.75rem',
-                border: '1px solid var(--border-card)'
-              }}
-            >
-              <div>
-                {/* Visual Window Mock / Header Bar */}
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: '1rem'
-                  }}
-                >
-                  <span
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.4rem',
-                      fontSize: '0.78rem',
-                      fontFamily: 'var(--font-mono)',
-                      fontWeight: 600,
-                      color: 'var(--text-secondary)',
-                      background: 'var(--tag-bg)',
-                      padding: '0.25rem 0.75rem',
-                      borderRadius: 'var(--radius-full)',
-                      border: '1px solid var(--tag-border)'
-                    }}
-                  >
-                    <Layers size={13} />
-                    <span>{project.category}</span>
-                  </span>
+        {/* Stacking-Card Scroll Showcase Container */}
+        <div className="stacking-card-container">
+          {filteredProjects.map((project, index) => {
+            // Calculate stacking top offset
+            const topOffset = `calc(90px + ${index * 22}px)`;
 
-                  <div style={{ display: 'flex', gap: '5px' }}>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--border-card-hover)' }} />
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--border-card-hover)' }} />
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--border-card-hover)' }} />
-                  </div>
-                </div>
-
-                {/* Project Title & Subtitle */}
-                <h3
-                  style={{
-                    fontSize: '1.25rem',
-                    fontWeight: 700,
-                    color: 'var(--text-main)',
-                    lineHeight: 1.3,
-                    marginBottom: '0.25rem'
-                  }}
-                >
-                  {project.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: '0.84rem',
-                    fontFamily: 'var(--font-mono)',
-                    color: 'var(--text-dim)',
-                    marginBottom: '0.95rem'
-                  }}
-                >
-                  {project.subtitle}
-                </p>
-
-                {/* Description */}
-                <p
-                  style={{
-                    fontSize: '0.9rem',
-                    color: 'var(--text-muted)',
-                    lineHeight: 1.65,
-                    marginBottom: '1.25rem'
-                  }}
-                >
-                  {project.description}
-                </p>
-
-                {/* Key Features Preview */}
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.4rem',
-                    marginBottom: '1.35rem'
-                  }}
-                >
-                  {project.features.slice(0, 3).map((feat, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.45rem',
-                        fontSize: '0.82rem',
-                        color: 'var(--text-secondary)'
-                      }}
-                    >
-                      <CheckCircle2 size={13} color="var(--text-main)" style={{ flexShrink: 0 }} />
-                      <span>{feat}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Tech Stack Tags */}
-                <div
-                  style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '0.4rem',
-                    marginBottom: '1.5rem'
-                  }}
-                >
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      style={{
-                        fontSize: '0.74rem',
-                        fontFamily: 'var(--font-mono)',
-                        padding: '0.2rem 0.55rem',
-                        borderRadius: 'var(--radius-xs)',
-                        background: 'var(--tag-bg)',
-                        border: '1px solid var(--border-subtle)',
-                        color: 'var(--text-secondary)'
-                      }}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons: GitHub Repo + View Details Modal */}
+            return (
               <div
+                key={project.id}
+                className="stacking-card-item"
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  paddingTop: '1rem',
-                  borderTop: '1px solid var(--border-subtle)'
+                  top: topOffset,
+                  zIndex: index + 1
                 }}
               >
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-glass btn-sm"
-                    style={{ flex: 1 }}
-                    aria-label={`View ${project.title} on GitHub`}
-                  >
-                    <Github size={15} />
-                    <span>Repository</span>
-                    <ExternalLink size={12} />
-                  </a>
-                )}
-
-                <button
-                  onClick={() => setActiveModalProject(project)}
-                  className="btn btn-outline btn-sm"
-                  style={{ flex: 1 }}
+                <div
+                  className="neobrutal-card"
+                  style={{
+                    padding: '2.25rem',
+                    background: 'var(--bg-card)',
+                    border: 'var(--border-thick) solid var(--border-color)',
+                    boxShadow: 'var(--shadow-offset-lg)'
+                  }}
                 >
-                  <Info size={14} />
-                  <span>View Details</span>
-                </button>
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr',
+                      gap: '2rem'
+                    }}
+                    className="project-inner-grid"
+                  >
+                    <style>{`
+                      @media (min-width: 900px) {
+                        .project-inner-grid {
+                          grid-template-columns: 1.15fr 0.85fr !important;
+                          gap: 2.75rem !important;
+                        }
+                      }
+                    `}</style>
+
+                    {/* Left Details */}
+                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div>
+                        {/* Top Meta Bar */}
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.65rem',
+                            marginBottom: '1rem'
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontSize: '0.78rem',
+                              fontFamily: 'var(--font-mono)',
+                              fontWeight: 900,
+                              background: 'var(--accent-lime)',
+                              color: '#000000',
+                              border: '1.5px solid var(--border-color)',
+                              padding: '0.2rem 0.65rem',
+                              textTransform: 'uppercase'
+                            }}
+                          >
+                            PROJECT 0{index + 1}
+                          </span>
+
+                          <span
+                            style={{
+                              fontSize: '0.78rem',
+                              fontFamily: 'var(--font-mono)',
+                              fontWeight: 700,
+                              border: '1.5px solid var(--border-color)',
+                              padding: '0.2rem 0.65rem',
+                              background: 'var(--bg-surface)'
+                            }}
+                          >
+                            {project.category}
+                          </span>
+                        </div>
+
+                        {/* Title & Subtitle */}
+                        <h3
+                          style={{
+                            fontSize: 'clamp(1.6rem, 3.2vw, 2.3rem)',
+                            fontWeight: 900,
+                            letterSpacing: '-0.025em',
+                            textTransform: 'uppercase',
+                            lineHeight: 1.1,
+                            marginBottom: '0.45rem',
+                            color: 'var(--text-primary)'
+                          }}
+                        >
+                          {project.title}
+                        </h3>
+
+                        <p
+                          style={{
+                            fontSize: '0.92rem',
+                            fontFamily: 'var(--font-mono)',
+                            color: 'var(--text-dim)',
+                            marginBottom: '1.15rem'
+                          }}
+                        >
+                          // {project.subtitle}
+                        </p>
+
+                        {/* Description */}
+                        <p
+                          style={{
+                            fontSize: '1rem',
+                            color: 'var(--text-muted)',
+                            lineHeight: 1.7,
+                            marginBottom: '1.5rem'
+                          }}
+                        >
+                          {project.description}
+                        </p>
+
+                        {/* Key Features */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1.5rem' }}>
+                          {project.features.slice(0, 3).map((feat, fIdx) => (
+                            <div
+                              key={fIdx}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.55rem',
+                                fontSize: '0.88rem',
+                                fontWeight: 600,
+                                color: 'var(--text-secondary)'
+                              }}
+                            >
+                              <span style={{ color: 'var(--accent-lime)' }}>▶</span>
+                              <span>{feat}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Tech Chips */}
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '1.5rem' }}>
+                        {project.tech.map((t) => (
+                          <span
+                            key={t}
+                            style={{
+                              fontSize: '0.78rem',
+                              fontFamily: 'var(--font-mono)',
+                              fontWeight: 700,
+                              padding: '0.22rem 0.65rem',
+                              background: 'var(--bg-surface)',
+                              border: '1.5px solid var(--border-color)',
+                              boxShadow: '1.5px 1.5px 0px var(--shadow-color)'
+                            }}
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* CTAs */}
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-brutal btn-brutal-lime btn-brutal-sm"
+                          >
+                            <Github size={16} />
+                            <span>GitHub Repo</span>
+                            <ExternalLink size={13} />
+                          </a>
+                        )}
+
+                        <button
+                          onClick={() => setActiveModalProject(project)}
+                          className="btn-brutal btn-brutal-ghost btn-brutal-sm"
+                        >
+                          <Info size={15} />
+                          <span>View Full Spec</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Right Visual Element */}
+                    <div
+                      style={{
+                        background: 'var(--bg-surface)',
+                        border: '2px solid var(--border-color)',
+                        boxShadow: '4px 4px 0px var(--shadow-color)',
+                        padding: '1.5rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        minHeight: '260px'
+                      }}
+                    >
+                      {/* Window Header */}
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          paddingBottom: '0.85rem',
+                          borderBottom: '2px solid var(--border-color)'
+                        }}
+                      >
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', fontWeight: 800 }}>
+                          SPEC_PREVIEW.JSON
+                        </span>
+                        <div style={{ display: 'flex', gap: '4px' }}>
+                          <div style={{ width: '8px', height: '8px', background: 'var(--border-color)' }} />
+                          <div style={{ width: '8px', height: '8px', background: 'var(--border-color)' }} />
+                        </div>
+                      </div>
+
+                      {/* Mock Code Preview */}
+                      <div
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.82rem',
+                          color: 'var(--text-secondary)',
+                          lineHeight: 1.7,
+                          padding: '1rem 0'
+                        }}
+                      >
+                        <div><span style={{ color: 'var(--accent-cobalt)' }}>const</span> project = &#123;</div>
+                        <div style={{ paddingLeft: '1.25rem' }}>title: <span style={{ color: 'var(--accent-lime)' }}>"{project.title}"</span>,</div>
+                        <div style={{ paddingLeft: '1.25rem' }}>category: "{project.category}",</div>
+                        <div style={{ paddingLeft: '1.25rem' }}>verified: <span style={{ color: 'var(--accent-lime)' }}>true</span>,</div>
+                        <div style={{ paddingLeft: '1.25rem' }}>status: "Production Ready"</div>
+                        <div>&#125;;</div>
+                      </div>
+
+                      <div
+                        style={{
+                          paddingTop: '0.85rem',
+                          borderTop: '2px solid var(--border-color)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          fontSize: '0.76rem',
+                          fontFamily: 'var(--font-mono)'
+                        }}
+                      >
+                        <span style={{ color: 'var(--text-dim)' }}>STABILITY: 100%</span>
+                        <span style={{ color: 'var(--accent-lime)', fontWeight: 800 }}>ACTIVE BUILD</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Modal: Project Deep Dive */}
+        {/* Full Spec Modal */}
         {activeModalProject && (
           <div
             style={{
               position: 'fixed',
               inset: 0,
-              zIndex: 100,
-              background: 'rgba(0, 0, 0, 0.75)',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
+              zIndex: 999,
+              background: 'rgba(0, 0, 0, 0.85)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '1.25rem'
+              padding: '1.5rem'
             }}
             onClick={() => setActiveModalProject(null)}
           >
             <div
-              className="glass-card"
+              className="neobrutal-card"
               style={{
                 width: '100%',
-                maxWidth: '620px',
-                maxHeight: '90vh',
+                maxWidth: '650px',
+                maxHeight: '88vh',
                 overflowY: 'auto',
-                padding: '2rem',
-                background: 'var(--bg-secondary)',
-                border: '1px solid var(--border-card-hover)',
-                boxShadow: '0 25px 60px rgba(0, 0, 0, 0.8)'
+                padding: '2.25rem',
+                background: 'var(--bg-card)',
+                boxShadow: '10px 10px 0px var(--shadow-color)'
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Modal Top Bar */}
               <div
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  marginBottom: '1rem'
+                  marginBottom: '1.25rem',
+                  paddingBottom: '0.75rem',
+                  borderBottom: '2px solid var(--border-color)'
                 }}
               >
                 <span
                   style={{
                     fontSize: '0.8rem',
                     fontFamily: 'var(--font-mono)',
-                    color: 'var(--text-secondary)',
-                    background: 'var(--tag-bg)',
-                    padding: '0.25rem 0.75rem',
-                    borderRadius: 'var(--radius-full)',
-                    border: '1px solid var(--tag-border)'
+                    fontWeight: 800,
+                    background: 'var(--accent-lime)',
+                    color: '#000000',
+                    padding: '0.2rem 0.65rem',
+                    border: '1.5px solid var(--border-color)'
                   }}
                 >
                   {activeModalProject.category}
@@ -316,62 +377,39 @@ export default function Projects() {
                 <button
                   onClick={() => setActiveModalProject(null)}
                   style={{
-                    color: 'var(--text-muted)',
                     padding: '0.35rem',
-                    borderRadius: 'var(--radius-xs)',
+                    border: '2px solid var(--border-color)',
+                    background: 'var(--bg-surface)',
                     cursor: 'pointer'
                   }}
                   aria-label="Close dialog"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
 
               <h3
                 style={{
-                  fontSize: '1.5rem',
-                  fontWeight: 800,
-                  color: 'var(--text-main)',
+                  fontSize: '1.75rem',
+                  fontWeight: 900,
+                  textTransform: 'uppercase',
                   marginBottom: '0.25rem'
                 }}
               >
                 {activeModalProject.title}
               </h3>
-              <p
-                style={{
-                  fontSize: '0.88rem',
-                  fontFamily: 'var(--font-mono)',
-                  color: 'var(--text-dim)',
-                  marginBottom: '1.25rem'
-                }}
-              >
-                {activeModalProject.subtitle}
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.88rem', color: 'var(--text-dim)', marginBottom: '1.25rem' }}>
+                // {activeModalProject.subtitle}
               </p>
 
-              <p
-                style={{
-                  fontSize: '0.96rem',
-                  color: 'var(--text-muted)',
-                  lineHeight: 1.7,
-                  marginBottom: '1.5rem'
-                }}
-              >
+              <p style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
                 {activeModalProject.description}
               </p>
 
-              {/* Complete Features List */}
+              {/* Complete Features */}
               <div style={{ marginBottom: '1.5rem' }}>
-                <h4
-                  style={{
-                    fontSize: '0.92rem',
-                    fontWeight: 700,
-                    color: 'var(--text-main)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.04em',
-                    marginBottom: '0.75rem'
-                  }}
-                >
-                  Key Architectural Features
+                <h4 style={{ fontSize: '0.94rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+                  Complete Architecture Spec
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
                   {activeModalProject.features.map((feat, idx) => (
@@ -382,42 +420,33 @@ export default function Projects() {
                         alignItems: 'center',
                         gap: '0.55rem',
                         fontSize: '0.88rem',
+                        fontWeight: 600,
                         color: 'var(--text-secondary)'
                       }}
                     >
-                      <CheckCircle2 size={15} color="var(--text-main)" style={{ flexShrink: 0 }} />
+                      <span style={{ color: 'var(--accent-lime)' }}>■</span>
                       <span>{feat}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Tech Stack */}
+              {/* Technologies */}
               <div style={{ marginBottom: '1.75rem' }}>
-                <h4
-                  style={{
-                    fontSize: '0.92rem',
-                    fontWeight: 700,
-                    color: 'var(--text-main)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.04em',
-                    marginBottom: '0.75rem'
-                  }}
-                >
-                  Technologies Used
+                <h4 style={{ fontSize: '0.94rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+                  Tech Stack
                 </h4>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
                   {activeModalProject.tech.map((t) => (
                     <span
                       key={t}
                       style={{
-                        fontSize: '0.8rem',
+                        fontSize: '0.82rem',
                         fontFamily: 'var(--font-mono)',
+                        fontWeight: 700,
                         padding: '0.25rem 0.65rem',
-                        borderRadius: 'var(--radius-xs)',
-                        background: 'var(--tag-bg)',
-                        border: '1px solid var(--border-card)',
-                        color: 'var(--text-main)'
+                        background: 'var(--bg-surface)',
+                        border: '1.5px solid var(--border-color)'
                       }}
                     >
                       {t}
@@ -426,23 +455,23 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Links */}
+              {/* Actions */}
               <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
                 {activeModalProject.github && (
                   <a
                     href={activeModalProject.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary btn-sm"
+                    className="btn-brutal btn-brutal-lime btn-brutal-sm"
                   >
                     <Github size={15} />
-                    <span>Open GitHub Repository</span>
+                    <span>View GitHub Repo</span>
                     <ExternalLink size={13} />
                   </a>
                 )}
                 <button
                   onClick={() => setActiveModalProject(null)}
-                  className="btn btn-outline btn-sm"
+                  className="btn-brutal btn-brutal-ghost btn-brutal-sm"
                 >
                   Close
                 </button>

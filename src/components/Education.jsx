@@ -1,24 +1,25 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { GraduationCap, Calendar, MapPin, Award, BookOpen, CheckCircle2, Trophy, Star } from 'lucide-react';
+import ScrambleText from './ScrambleText';
+import { GraduationCap, Calendar, MapPin, Trophy, Award, CheckCircle2 } from 'lucide-react';
 
 export default function Education() {
   const { education, achievements } = portfolioData;
 
   return (
-    <section id="education" className="section">
+    <section id="education" className="section" style={{ borderTop: 'var(--border-width) solid var(--border-color)' }}>
       <div className="container">
         {/* Education Sub-section */}
         <div>
           <div className="section-header">
-            <div className="section-tag">
-              <span>// 05. ACADEMICS & RECOGNITION</span>
+            <div className="section-tag-box">
+              <span>// 05. ACADEMIC CREDENTIALS</span>
             </div>
             <h2 className="section-title">
-              Education & <span className="monochrome-gradient">History</span>
+              <ScrambleText text="EDUCATION & ACHIEVEMENTS" />
             </h2>
             <p className="section-subtitle">
-              Formal academic foundation in Computer Science and Engineering at Rajeev Gandhi Memorial College of Engineering and Technology.
+              Formal academic foundation at Rajeev Gandhi Memorial College of Engineering and Technology alongside competitive hackathon achievements.
             </p>
           </div>
 
@@ -26,8 +27,8 @@ export default function Education() {
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 330px), 1fr))',
-              gap: '1.25rem',
-              marginBottom: '4.5rem'
+              gap: '1.5rem',
+              marginBottom: '5rem'
             }}
           >
             {education.map((item, index) => {
@@ -35,15 +36,13 @@ export default function Education() {
               return (
                 <div
                   key={index}
-                  className="glass-card"
+                  className="neobrutal-card"
                   style={{
-                    padding: '1.6rem',
+                    padding: '1.85rem',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    border: isCurrent
-                      ? '1px solid var(--border-card-hover)'
-                      : '1px solid var(--border-card)'
+                    background: 'var(--bg-card)'
                   }}
                 >
                   <div>
@@ -53,7 +52,7 @@ export default function Education() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        marginBottom: '0.75rem'
+                        marginBottom: '0.85rem'
                       }}
                     >
                       <div
@@ -61,8 +60,9 @@ export default function Education() {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '0.35rem',
-                          fontSize: '0.78rem',
+                          fontSize: '0.8rem',
                           fontFamily: 'var(--font-mono)',
+                          fontWeight: 700,
                           color: 'var(--text-dim)'
                         }}
                       >
@@ -72,14 +72,14 @@ export default function Education() {
 
                       <div
                         style={{
-                          padding: '0.2rem 0.65rem',
-                          borderRadius: 'var(--radius-full)',
-                          background: isCurrent ? 'var(--accent-primary)' : 'var(--tag-bg)',
-                          color: isCurrent ? 'var(--accent-contrast)' : 'var(--text-main)',
-                          fontSize: '0.78rem',
+                          padding: '0.22rem 0.75rem',
+                          background: isCurrent ? 'var(--accent-lime)' : 'var(--bg-surface)',
+                          color: isCurrent ? '#000000' : 'var(--text-primary)',
+                          border: '2px solid var(--border-color)',
+                          boxShadow: '2px 2px 0px var(--shadow-color)',
+                          fontSize: '0.82rem',
                           fontFamily: 'var(--font-mono)',
-                          fontWeight: 700,
-                          border: '1px solid var(--border-card)'
+                          fontWeight: 900
                         }}
                       >
                         {item.grade}
@@ -89,11 +89,12 @@ export default function Education() {
                     {/* Degree */}
                     <h3
                       style={{
-                        fontSize: '1.15rem',
-                        fontWeight: 700,
-                        color: 'var(--text-main)',
-                        marginBottom: '0.3rem',
-                        lineHeight: 1.3
+                        fontSize: '1.3rem',
+                        fontWeight: 900,
+                        textTransform: 'uppercase',
+                        color: 'var(--text-primary)',
+                        marginBottom: '0.35rem',
+                        lineHeight: 1.2
                       }}
                     >
                       {item.degree}
@@ -102,10 +103,10 @@ export default function Education() {
                     {/* Institution */}
                     <div
                       style={{
-                        fontSize: '0.88rem',
-                        fontWeight: 600,
+                        fontSize: '0.94rem',
+                        fontWeight: 700,
                         color: 'var(--text-secondary)',
-                        marginBottom: '0.55rem'
+                        marginBottom: '0.65rem'
                       }}
                     >
                       {item.institution}
@@ -116,34 +117,35 @@ export default function Education() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.35rem',
-                        fontSize: '0.78rem',
+                        fontSize: '0.8rem',
                         color: 'var(--text-dim)',
-                        marginBottom: '0.95rem'
+                        marginBottom: '1rem',
+                        fontFamily: 'var(--font-mono)'
                       }}
                     >
-                      <MapPin size={12} />
+                      <MapPin size={13} />
                       <span>{item.location}</span>
                     </div>
 
                     {/* Details */}
                     <p
                       style={{
-                        fontSize: '0.85rem',
+                        fontSize: '0.88rem',
                         color: 'var(--text-muted)',
                         lineHeight: 1.6,
-                        marginBottom: '1rem'
+                        marginBottom: '1.25rem'
                       }}
                     >
                       {item.details}
                     </p>
                   </div>
 
-                  {/* Coursework / Topics */}
+                  {/* Coursework Tags */}
                   {item.coursework && (
                     <div
                       style={{
-                        paddingTop: '0.75rem',
-                        borderTop: '1px solid var(--border-subtle)',
+                        paddingTop: '0.85rem',
+                        borderTop: '2px solid var(--border-color)',
                         display: 'flex',
                         flexWrap: 'wrap',
                         gap: '0.35rem'
@@ -153,12 +155,12 @@ export default function Education() {
                         <span
                           key={cIdx}
                           style={{
-                            fontSize: '0.72rem',
+                            fontSize: '0.74rem',
                             fontFamily: 'var(--font-mono)',
-                            padding: '0.15rem 0.5rem',
-                            borderRadius: 'var(--radius-xs)',
-                            background: 'var(--tag-bg)',
-                            color: 'var(--text-dim)'
+                            padding: '0.15rem 0.55rem',
+                            border: '1.5px solid var(--border-color)',
+                            background: 'var(--bg-surface)',
+                            fontWeight: 600
                           }}
                         >
                           {c}
@@ -172,38 +174,37 @@ export default function Education() {
           </div>
         </div>
 
-        {/* Separate Achievements Section */}
-        <div id="achievements">
+        {/* Separate Achievements Showcase */}
+        <div>
           <div className="section-header">
-            <div className="section-tag">
-              <span>// HONORS & MILESTONES</span>
+            <div className="section-tag-box">
+              <span>// RECOGNITION & HONORS</span>
             </div>
             <h3 className="section-title">
-              Key <span className="monochrome-gradient">Achievements</span>
+              <ScrambleText text="KEY ACHIEVEMENTS" />
             </h3>
             <p className="section-subtitle">
-              Verified recognitions in technical symposiums, competitive leaderboards, and developer ambassadorships.
+              Verified competitive standings, leaderboard performance, and event coordination awards.
             </p>
           </div>
 
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-              gap: '1.25rem'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 330px), 1fr))',
+              gap: '1.5rem'
             }}
           >
             {achievements.map((item, index) => (
               <div
                 key={index}
-                className="glass-card"
+                className="neobrutal-card"
                 style={{
-                  padding: '1.6rem',
+                  padding: '1.85rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  gap: '1rem',
-                  border: '1px solid var(--border-card)'
+                  background: 'var(--bg-card)'
                 }}
               >
                 <div>
@@ -212,25 +213,25 @@ export default function Education() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      marginBottom: '0.85rem'
+                      marginBottom: '1rem'
                     }}
                   >
                     <span
                       style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.4rem',
-                        padding: '0.22rem 0.65rem',
-                        borderRadius: 'var(--radius-full)',
-                        background: 'var(--tag-bg)',
-                        border: '1px solid var(--tag-border)',
-                        fontSize: '0.78rem',
+                        gap: '0.45rem',
+                        padding: '0.25rem 0.75rem',
+                        background: 'var(--accent-lime)',
+                        color: '#000000',
+                        border: '2px solid var(--border-color)',
+                        boxShadow: '2.5px 2.5px 0px var(--shadow-color)',
+                        fontSize: '0.82rem',
                         fontFamily: 'var(--font-mono)',
-                        color: 'var(--text-main)',
-                        fontWeight: 700
+                        fontWeight: 900
                       }}
                     >
-                      <Trophy size={13} />
+                      <Trophy size={14} />
                       <span>{item.badge}</span>
                     </span>
 
@@ -238,7 +239,8 @@ export default function Education() {
                       style={{
                         fontSize: '0.78rem',
                         fontFamily: 'var(--font-mono)',
-                        color: 'var(--text-dim)'
+                        color: 'var(--text-dim)',
+                        fontWeight: 700
                       }}
                     >
                       {item.date}
@@ -247,11 +249,12 @@ export default function Education() {
 
                   <h4
                     style={{
-                      fontSize: '1.15rem',
-                      fontWeight: 700,
-                      color: 'var(--text-main)',
-                      lineHeight: 1.3,
-                      marginBottom: '0.35rem'
+                      fontSize: '1.3rem',
+                      fontWeight: 900,
+                      textTransform: 'uppercase',
+                      color: 'var(--text-primary)',
+                      lineHeight: 1.25,
+                      marginBottom: '0.4rem'
                     }}
                   >
                     {item.title}
@@ -259,10 +262,10 @@ export default function Education() {
 
                   <div
                     style={{
-                      fontSize: '0.88rem',
-                      fontWeight: 600,
+                      fontSize: '0.92rem',
+                      fontWeight: 700,
                       color: 'var(--text-secondary)',
-                      marginBottom: '0.75rem'
+                      marginBottom: '0.85rem'
                     }}
                   >
                     {item.organization}
@@ -270,9 +273,9 @@ export default function Education() {
 
                   <p
                     style={{
-                      fontSize: '0.86rem',
+                      fontSize: '0.9rem',
                       color: 'var(--text-muted)',
-                      lineHeight: 1.6
+                      lineHeight: 1.65
                     }}
                   >
                     {item.description}
