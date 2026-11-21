@@ -1,5 +1,5 @@
 /**
- * Secure Email Service for Syed Aman's Portfolio
+ * Secure Email Service for Shaik Musheera's Portfolio
  * Handles email delivery via client-side email dispatch (Web3Forms / Formspree / EmailJS)
  * without exposing SMTP credentials or private server secrets.
  */
@@ -24,7 +24,7 @@ export function validateContactForm({ name, email, message }) {
   if (!trimmedEmail) {
     errors.email = 'Please enter your email address.';
   } else if (!EMAIL_REGEX.test(trimmedEmail)) {
-    errors.email = 'Please enter a valid email address (e.g. alex@example.com).';
+    errors.email = 'Please enter a valid email address (e.g. name@example.com).';
   }
 
   const trimmedMessage = (message || '').trim();
@@ -38,8 +38,8 @@ export function validateContactForm({ name, email, message }) {
 }
 
 /**
- * Sends the contact form submission to Syed Aman's inbox.
- * Prioritizes Web3Forms, followed by Formspree and EmailJS REST endpoints.
+ * Sends the contact form submission.
+ * Uses Web3Forms if valid key is set, or graceful mock delivery.
  */
 export async function sendContactEmail({ name, email, subject, message, botcheck }) {
   // Anti-spam honeypot detection
@@ -58,9 +58,6 @@ export async function sendContactEmail({ name, email, subject, message, botcheck
   // Environment variables
   const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
   const formspreeId = import.meta.env.VITE_FORMSPREE_ID;
-  const emailJsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const emailJsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  const emailJsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   // 1. Web3Forms Integration
   if (web3FormsKey && web3FormsKey !== 'your_web3forms_access_key') {
@@ -87,7 +84,7 @@ export async function sendContactEmail({ name, email, subject, message, botcheck
       if (response.ok && data.success) {
         return {
           success: true,
-          message: 'Thank you! Your message has been sent directly to Syed Aman. You will receive a response shortly.'
+          message: 'Thank you! Your message has been sent directly to Shaik Musheera. You will receive a response shortly.'
         };
       }
 
@@ -121,61 +118,21 @@ export async function sendContactEmail({ name, email, subject, message, botcheck
       if (response.ok) {
         return {
           success: true,
-          message: 'Thank you! Your message has been sent directly to Syed Aman. You will receive a response shortly.'
+          message: 'Thank you! Your inquiry has been sent to Shaik Musheera.'
         };
       }
 
-      const errData = await response.json().catch(() => ({}));
-      throw new Error(errData.error || 'Formspree submission failed. Please try direct email.');
+      throw new Error('Formspree dispatch failed.');
     } catch (err) {
-      throw new Error(err.message || 'Network error while communicating with Formspree.');
+      throw new Error(err.message || 'Could not send message via Formspree.');
     }
   }
 
-  // 3. EmailJS REST API Integration
-  if (
-    emailJsServiceId &&
-    emailJsTemplateId &&
-    emailJsPublicKey &&
-    emailJsServiceId !== 'your_service_id'
-  ) {
-    try {
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          service_id: emailJsServiceId,
-          template_id: emailJsTemplateId,
-          user_id: emailJsPublicKey,
-          template_params: {
-            from_name: trimmedName,
-            from_email: trimmedEmail,
-            reply_to: trimmedEmail,
-            subject: emailSubject,
-            message: trimmedMessage,
-            to_email: 'syedamanmirzanulla@gmail.com'
-          }
-        })
-      });
-
-      if (response.ok) {
-        return {
-          success: true,
-          message: 'Thank you! Your message has been sent directly to Syed Aman. You will receive a response shortly.'
-        };
-      }
-
-      const errText = await response.text().catch(() => '');
-      throw new Error(errText || 'EmailJS delivery failed. Please try direct email.');
-    } catch (err) {
-      throw new Error(err.message || 'Network error while contacting EmailJS service.');
-    }
-  }
-
-  // If no environment variable is configured in the environment
-  throw new Error(
-    'Email service access key is not yet configured in environment variables (VITE_WEB3FORMS_ACCESS_KEY). Please add your key to .env, or click the direct "Email Me" button below.'
-  );
+  // Fallback: If no provider is configured, guide user to direct mailto
+  return {
+    success: true,
+    message: 'Thank you! Your inquiry details are ready. Click the Direct Email link to send via your mail client.',
+    fallbackToMailto: true,
+    mailtoUrl: `mailto:syedamanmirzanulla@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(`From: ${trimmedName} (${trimmedEmail})\n\n${trimmedMessage}`)}`
+  };
 }

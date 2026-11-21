@@ -3,7 +3,27 @@ import React, { useEffect, useRef, useState } from 'react';
 export default function BackgroundAnimation() {
   const canvasRef = useRef(null);
   const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
+  const [isLight, setIsLight] = useState(false);
 
+  // Detect theme changes dynamically
+  useEffect(() => {
+    const checkTheme = () => {
+      const theme = document.documentElement.getAttribute('data-theme');
+      setIsLight(theme === 'light');
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Mouse move listener for soft ambient spotlight
   useEffect(() => {
     let animationFrameId;
     const handleMouseMove = (e) => {
@@ -19,7 +39,7 @@ export default function BackgroundAnimation() {
     };
   }, []);
 
-  // Subtle floating ambient particles
+  // Ambient particles
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -29,19 +49,22 @@ export default function BackgroundAnimation() {
     let height = (canvas.height = window.innerHeight);
 
     const handleResize = () => {
+      if (!canvas) return;
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
     window.addEventListener('resize', handleResize);
 
-    const particleCount = Math.min(width > 768 ? 32 : 16, 40);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const particleCount = reducedMotion ? 0 : Math.min(width > 768 ? 28 : 14, 32);
+
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 1.5 + 0.5,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: (Math.random() - 0.5) * 0.25 - 0.1,
-      alpha: Math.random() * 0.4 + 0.15,
+      radius: Math.random() * 1.4 + 0.6,
+      vx: (Math.random() - 0.5) * 0.2,
+      vy: (Math.random() - 0.5) * 0.2 - 0.05,
+      alpha: Math.random() * 0.35 + 0.1,
       pulseSpeed: Math.random() * 0.015 + 0.005
     }));
 
@@ -51,7 +74,7 @@ export default function BackgroundAnimation() {
       particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
-        p.alpha += Math.sin(Date.now() * p.pulseSpeed) * 0.003;
+        p.alpha += Math.sin(Date.now() * p.pulseSpeed) * 0.002;
 
         if (p.x < 0) p.x = width;
         if (p.x > width) p.x = 0;
@@ -60,22 +83,25 @@ export default function BackgroundAnimation() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(52, 211, 153, ${Math.max(0.08, Math.min(0.5, p.alpha))})`;
-        ctx.shadowColor = '#10b981';
-        ctx.shadowBlur = 6;
+        const clampedAlpha = Math.max(0.08, Math.min(0.4, p.alpha));
+        ctx.fillStyle = isLight
+          ? `rgba(0, 0, 0, ${clampedAlpha * 0.4})`
+          : `rgba(255, 255, 255, ${clampedAlpha})`;
         ctx.fill();
       });
 
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    if (!reducedMotion) {
+      render();
+    }
 
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isLight]);
 
   return (
     <div
@@ -85,99 +111,50 @@ export default function BackgroundAnimation() {
         pointerEvents: 'none',
         zIndex: 0,
         overflow: 'hidden',
-        background: '#030806'
+        backgroundColor: 'var(--bg-primary)',
+        transition: 'background-color 0.3s ease'
       }}
+      aria-hidden="true"
     >
-      {/* Layer 1: Base Dark Gradient Falloff */}
+      {/* Subtle radial spotlight following mouse */}
+      <div
+        style={{
+          position: 'absolute',
+          width: '600px',
+          height: '600px',
+          borderRadius: '50%',
+          top: mousePos.y - 300,
+          left: mousePos.x - 300,
+          background: isLight
+            ? 'radial-gradient(circle, rgba(0,0,0,0.025) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(255,255,255,0.035) 0%, transparent 70%)',
+          transition: 'top 0.1s ease-out, left 0.1s ease-out',
+          pointerEvents: 'none'
+        }}
+      />
+
+      {/* Grid Pattern overlay */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse 90% 80% at 50% -10%, #082115 0%, #04100a 45%, #030806 80%)',
-          opacity: 0.95
+          backgroundImage: isLight
+            ? 'radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px)'
+            : 'radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px)',
+          backgroundSize: '36px 36px',
+          opacity: 0.7
         }}
       />
 
-      {/* Layer 2: Large Blurred Emerald Gradient Orbs */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '5%',
-          left: '18%',
-          width: '50vw',
-          height: '50vw',
-          maxWidth: '520px',
-          maxHeight: '520px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(6, 35, 22, 0.04) 50%, transparent 70%)',
-          filter: 'blur(95px)',
-          animation: 'floatSlow 24s ease-in-out infinite alternate',
-          transform: 'translate3d(0,0,0)'
-        }}
-      />
-
-      <div
-        style={{
-          position: 'absolute',
-          top: '40%',
-          right: '8%',
-          width: '45vw',
-          height: '45vw',
-          maxWidth: '480px',
-          maxHeight: '480px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(5, 150, 105, 0.1) 0%, rgba(4, 25, 15, 0.03) 55%, transparent 70%)',
-          filter: 'blur(110px)',
-          animation: 'floatSlow 28s ease-in-out infinite alternate-reverse',
-          transform: 'translate3d(0,0,0)'
-        }}
-      />
-
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '5%',
-          left: '10%',
-          width: '40vw',
-          height: '40vw',
-          maxWidth: '420px',
-          maxHeight: '420px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(45, 212, 191, 0.06) 0%, transparent 65%)',
-          filter: 'blur(85px)',
-          animation: 'floatSlow 32s ease-in-out infinite alternate',
-          transform: 'translate3d(0,0,0)'
-        }}
-      />
-
-      {/* Layer 3: Interactive Mouse Follow Subtle Glow */}
-      <div
-        style={{
-          position: 'fixed',
-          top: mousePos.y - 200,
-          left: mousePos.x - 200,
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(52, 211, 153, 0.06) 0%, rgba(16, 185, 129, 0.02) 40%, transparent 70%)',
-          pointerEvents: 'none',
-          filter: 'blur(45px)',
-          opacity: mousePos.x > 0 ? 1 : 0,
-          transition: 'opacity 0.4s ease'
-        }}
-      />
-
-      {/* Layer 4: Dev Grid Pattern with Vignette */}
-      <div className="bg-grid" />
-
-      {/* Layer 5: Ambient Floating Particles */}
+      {/* Ambient Canvas Floating Particles */}
       <canvas
         ref={canvasRef}
         style={{
           position: 'absolute',
           inset: 0,
           width: '100%',
-          height: '100%'
+          height: '100%',
+          opacity: 0.85
         }}
       />
     </div>

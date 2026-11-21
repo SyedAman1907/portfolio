@@ -1,179 +1,304 @@
 export const portfolioData = {
   personal: {
-    name: "Syed Aman Mirzanullah",
-    shortName: "Syed Aman",
-    headline: "Full Stack Developer | AI Developer | Frontend Developer",
+    name: "Shaik Musheera",
+    shortName: "Musheera",
+    monogram: "SM",
+    headline: "B.Tech Student | Web Developer | Technology Enthusiast",
     roles: [
-      "Full Stack Developer",
-      "AI Developer",
+      "Web Developer",
+      "B.Tech CSE Student",
       "Frontend Developer",
-      "Python Developer",
-      "JavaScript Developer"
+      "Technology Enthusiast",
+      "Problem Solver"
     ],
-    bio: "Building AI-powered applications, full-stack products, frontend experiences, and developer tools.",
+    bio: "A passionate developer focused on building meaningful digital experiences, solving real-world problems, and continuously exploring modern technologies.",
     heroTags: [
-      "AI / ML",
-      "Full Stack",
-      "Frontend",
-      "Python",
+      "Web Development",
+      "React.js",
       "JavaScript",
-      "Vibe Coder"
+      "B.Tech CSE",
+      "Google Student Ambassador",
+      "Problem Solving"
     ],
-    location: "Kurnool, Andhra Pradesh, India",
+    status: {
+      text: "Available for internships & collaborations",
+      available: true
+    },
+    location: "Kurnool / Nandyal, Andhra Pradesh, India",
     email: "syedamanmirzanulla@gmail.com",
     githubUsername: "SyedAman1907",
     githubUrl: "https://github.com/SyedAman1907",
     linkedinUrl: "https://www.linkedin.com/in/syed-aman-593b97371",
     profileImage: "/images/aman-pic.jpg",
     aboutImage: "/images/aman-image.jpg",
-    resumePdf: "/resume/Syed_Aman_Mirzanullah_Resume.pdf",
+    resumePdf: "/resume/Shaik_Musheera_Resume.pdf",
     stats: [
-      { label: "DSA Challenges Solved", value: "100+", subtext: "Algorithmic problem solving" },
-      { label: "Academic CGPA", value: "8.4", subtext: "Computer Science & Engg." },
-      { label: "Community Members", value: "250+", subtext: "Mentored & engaged in workshops" },
-      { label: "Production & AI Apps", value: "6+", subtext: "Full-stack & intelligent tools" }
+      { label: "Academic CGPA", value: "8.4 / 10", subtext: "B.Tech Computer Science & Engg" },
+      { label: "Quiz Leaderboard", value: "4th Place", subtext: "MongoDB × ICT Academy Immersion" },
+      { label: "Coding Challenges", value: "100+", subtext: "Algorithmic & data structures problems" },
+      { label: "Community Leadership", value: "GSA & POC", subtext: "Google Ambassador & Event POC" }
     ]
   },
 
   about: {
-    title: "Bridging Full Stack Architecture & Practical AI Systems",
+    title: "Building Purposeful Digital Experiences with Modern Web Technologies",
     paragraphs: [
-      "I am a Computer Science undergraduate at Rajeev Gandhi Memorial College of Engineering and Technology, passionate about crafting high-performance full-stack web applications and AI-driven software.",
-      "With hands-on experience in modern frontend engineering (React, TypeScript), scalable backends (Node.js, Express, FastAPI, Python), and database systems (MongoDB, Firebase, Supabase), I build products with high visual fidelity and robust architecture.",
-      "My work extends into Applied AI and Data Engineering—including Natural Language Processing (NLP), TF-IDF vectorization, semantic candidate matching, and LLM integrations. I also served as a Google Student Ambassador, organizing technical workshops, coding competitions, and developer community activities."
+      "I am a Computer Science undergraduate at Rajeev Gandhi Memorial College of Engineering and Technology (RGMCET), driven by a deep passion for web development, software engineering, and modern technology solutions.",
+      "My technical journey centers on engineering clean, responsive, and accessible user experiences with React.js, modern JavaScript/TypeScript, and semantic styling, coupled with reliable backend architectures and relational/NoSQL databases like Node.js, Express, MongoDB, and MySQL.",
+      "Beyond core software development, I am an enthusiastic student leader. Having served as a Google Student Ambassador and campus Point of Contact (POC), I have coordinated large-scale technical workshops, coding challenges, and cross-functional teams, while also driving marketing and outreach communications across student developer communities.",
+      "I believe in continuous learning, real-world problem-solving, and writing elegant, maintainable code that delivers impact."
     ],
     highlights: [
-      "React.js & Modern UI Architecture",
-      "Python & FastAPI AI Services",
-      "NLP & LLM Integrations",
-      "MongoDB, Firebase & Supabase",
-      "Data Annotation & Validation",
-      "Community Coordination & Mentorship"
+      "B.Tech Computer Science & Engineering (RGMCET)",
+      "Modern Frontend Architecture (React.js, ES6+, Responsive Design)",
+      "Database Systems (MongoDB, MySQL, Firebase)",
+      "Google Student Ambassador & Campus POC Leadership",
+      "Marketing, Communications & Event Coordination",
+      "Data Annotation, Validation & Quality Assurance"
+    ],
+    coreValues: [
+      {
+        title: "Clean Architecture",
+        desc: "Writing modular, maintainable, and readable code adhering to modern web standards."
+      },
+      {
+        title: "User-Centric Design",
+        desc: "Building accessible, high-performance interfaces tailored for optimal user experience."
+      },
+      {
+        title: "Collaborative Leadership",
+        desc: "Fostering team synergy, clear communication, and community-driven knowledge sharing."
+      },
+      {
+        title: "Continuous Exploration",
+        desc: "Staying ahead with emerging web paradigms, modern tooling, and intelligent solutions."
+      }
     ]
   },
 
   education: [
     {
       institution: "Rajeev Gandhi Memorial College of Engineering and Technology",
+      shortInstitution: "RGMCET",
       degree: "B.Tech in Computer Science and Engineering",
       period: "2024 – 2028",
       grade: "CGPA: 8.4 / 10",
       location: "Nandyal / Kurnool, Andhra Pradesh",
-      details: "Specializing in Data Structures, Backend Systems, AI fundamentals, and Modern Software Engineering."
+      details: "Comprehensive coursework in Data Structures, Object-Oriented Programming, Database Management Systems, Web Technologies, and Software Engineering Foundations.",
+      isCurrent: true,
+      coursework: ["Data Structures & Algorithms", "Web Technologies", "Database Management", "Computer Networks", "Object-Oriented Programming"]
     },
     {
       institution: "Narayana Education Institution",
+      shortInstitution: "Narayana Jr College",
       degree: "Higher Secondary (Class XII - MPC)",
       period: "2022 – 2024",
       grade: "87%",
       location: "Kurnool, Andhra Pradesh",
-      details: "Rigorous focus on Mathematics, Physics, and Chemistry analytical foundations."
+      details: "Rigorous focus on advanced Mathematics, Physics, and Chemistry analytical foundations.",
+      isCurrent: false,
+      coursework: ["Advanced Mathematics", "Physics", "Chemistry"]
     },
     {
       institution: "Bhashyam High School",
+      shortInstitution: "Bhashyam School",
       degree: "Secondary School Certificate (Class X)",
       period: "2022",
       grade: "87%",
       location: "Kurnool, Andhra Pradesh",
-      details: "Graduated with distinction with top academic performance in science and mathematics."
+      details: "Graduated with distinction with top academic performance in science and mathematics.",
+      isCurrent: false,
+      coursework: ["General Mathematics", "General Science", "Social Studies"]
+    }
+  ],
+
+  achievements: [
+    {
+      title: "Student Quiz Leaderboard – 4th Place",
+      organization: "MongoDB × ICT Academy Industry Immersion Day",
+      date: "Industry Immersion 2025/2026",
+      badge: "Top 4 Rank",
+      description: "Secured 4th position on the competitive student leaderboard out of numerous participating engineering students, testing practical database design, document query execution, and modern cloud NoSQL fundamentals."
+    },
+    {
+      title: "Google Student Ambassador Recognition",
+      organization: "Google Student Ambassador Program",
+      date: "Campus Leadership",
+      badge: "Leadership Recognition",
+      description: "Recognized for spearheading campus technical outreach, conducting coding workshops, and connecting student developers with Google technology ecosystems."
+    },
+    {
+      title: "Point of Contact (POC) & Event Coordination Award",
+      organization: "College Technical Symposiums & Clubs",
+      date: "RGMCET Campus",
+      badge: "Excellence in Coordination",
+      description: "Entrusted as Point of Contact (POC) for campus events, effectively bridging communications between keynote speakers, department heads, and hundreds of student attendees."
     }
   ],
 
   experience: [
     {
+      company: "Google Student Ambassador Program",
+      role: "Google Student Ambassador",
+      period: "Completed",
+      duration: "Ambassadorship",
+      status: "Completed",
+      type: "Leadership",
+      isCurrent: false,
+      location: "Campus & Community",
+      badge: "Google Ambassador",
+      bullets: [
+        "Organized interactive technical workshops, coding challenges, and developer information sessions across the campus.",
+        "Coordinated student teams, promoted Google developer tools, and mentored peers on collaborative technical development.",
+        "Facilitated technical outreach, campus communication, and community participation in national hackathons."
+      ],
+      skills: ["Community Building", "Technical Outreach", "Event Planning", "Student Leadership", "Communication"]
+    },
+    {
+      company: "Technical Symposiums & Campus Activities",
+      role: "Point of Contact (POC) & Event Coordinator",
+      period: "Ongoing / Campus Leadership",
+      duration: "Key Responsibility",
+      status: "Active Lead",
+      type: "Leadership",
+      isCurrent: true,
+      location: "RGMCET, Andhra Pradesh",
+      badge: "POC Responsibility",
+      bullets: [
+        "Served as designated Point of Contact (POC) for college technical workshops, hackathons, and departmental symposiums.",
+        "Liaised seamlessly between faculty mentors, external technical speakers, student volunteers, and participating teams.",
+        "Managed on-ground logistics, participant queries, team registration pipelines, and real-time troubleshooting."
+      ],
+      skills: ["Point of Contact (POC)", "Event Coordination", "Stakeholder Communication", "Crisis Management", "Team Collaboration"]
+    },
+    {
+      company: "Student Developer Outreach",
+      role: "Marketing and Communications Intern / Lead",
+      period: "Internship & Community",
+      duration: "Student Role",
+      status: "Completed",
+      type: "Communications",
+      isCurrent: false,
+      location: "Hybrid / Campus",
+      badge: "Marketing & Comms",
+      bullets: [
+        "Formulated outreach campaigns, announcement schedules, and digital messaging for campus developer workshops and quizzes.",
+        "Increased student attendance and engagement by over 40% through targeted outreach and clear promotional material.",
+        "Coordinated with student designers and technical heads to communicate event schedules, guidelines, and benefits."
+      ],
+      skills: ["Communications", "Digital Outreach", "Audience Engagement", "Content Strategy", "Public Relations"]
+    },
+    {
       company: "Zenrix Tech",
       role: "Frontend Developer",
       period: "September 16, 2026 – March 16, 2027",
       duration: "6 Months",
-      displayPeriod: "September 16, 2026 – March 16, 2027 · 6 Months",
       status: "Currently Working",
-      type: "Current",
+      type: "Engineering Internship",
       isCurrent: true,
       location: "Remote / Onsite",
+      badge: "Frontend Engineering",
       bullets: [
-        "Frontend Developer role commencing September 16, 2026 for a 6-month planned duration through March 16, 2027.",
-        "Engineering responsive web applications, component architectures, and modern user interfaces."
+        "Engineering responsive web interfaces, reusable UI components, and modern client-side architectures.",
+        "Collaborating on web styling, mobile-first responsiveness, and cross-browser performance standards.",
+        "Translating wireframes and design specs into high-fidelity, accessible web applications."
       ],
-      skills: ["React.js", "JavaScript", "TypeScript", "HTML5", "CSS3"]
+      skills: ["React.js", "JavaScript", "HTML5 / CSS3", "Responsive Web Design", "Git"]
     },
     {
       company: "Tregio.ai",
-      role: "Data Annotation Intern",
+      role: "Data Annotation & Validation Intern",
       period: "May 2026 – September 2026",
+      duration: "Internship",
       status: "Completed",
-      type: "Internship",
+      type: "Technical Internship",
       isCurrent: false,
       location: "Remote / Hybrid",
+      badge: "Data & AI",
       bullets: [
-        "Annotated and reviewed datasets used for AI model development and evaluation.",
-        "Performed data labeling, validation and quality checks.",
-        "Maintained accuracy and consistency during dataset preparation."
+        "Annotated and labeled complex datasets utilized for machine learning models and intelligent data systems.",
+        "Executed rigorous quality control, data validation, and anomaly checks to maintain high dataset fidelity.",
+        "Collaborated with data engineers to establish consistent annotation taxonomy and validation guidelines."
       ],
       skills: ["Data Annotation", "Data Validation", "AI Quality Control", "Dataset Preparation"]
     },
     {
-      company: "Google Student Ambassador",
-      role: "Google Student Ambassador",
-      period: "Completed",
-      status: "Completed",
-      type: "Completed",
-      isCurrent: false,
-      location: "Campus & Community",
+      company: "CISC Club (Computer Science & Information Society)",
+      role: "Student Coordinator",
+      period: "2024 – 2026",
+      duration: "Student Leadership",
+      status: "Active Lead",
+      type: "Community",
+      isCurrent: true,
+      location: "RGMCET, Nandyal",
+      badge: "Student Society",
       bullets: [
-        "Organized technical workshops and coding competitions.",
-        "Coordinated student teams and participants.",
-        "Handled event planning, technical outreach and community activities."
+        "Coordinated student participation in competitive coding contests, algorithmic problem-solving sessions, and peer learning circles.",
+        "Assisted in structuring technical agendas, workshop materials, and lab assistance for junior students.",
+        "Strengthened department developer culture through collaborative hack sessions."
       ],
-      skills: ["Community Building", "Technical Outreach", "Event Planning", "Student Initiatives"]
+      skills: ["Team Leadership", "Peer Mentorship", "Technical Workshops", "Community Building"]
     }
   ],
 
   skills: {
-    programming: [
-      { name: "Java", icon: "Coffee" },
-      { name: "Python", icon: "Terminal" },
-      { name: "JavaScript", icon: "Code2" },
-      { name: "TypeScript", icon: "FileCode" }
+    categories: [
+      { id: "all", label: "All Skills" },
+      { id: "programming", label: "Programming" },
+      { id: "frontend", label: "Frontend" },
+      { id: "backend", label: "Backend" },
+      { id: "databases", label: "Databases" },
+      { id: "tools", label: "Developer Tools" },
+      { id: "ai", label: "AI & Emerging" },
+      { id: "professional", label: "Professional Skills" }
     ],
-    frontend: [
-      { name: "React.js", icon: "Layers" },
-      { name: "HTML5", icon: "Globe" },
-      { name: "CSS3", icon: "Palette" },
-      { name: "Responsive Web Design", icon: "Smartphone" }
-    ],
-    backend: [
-      { name: "Node.js", icon: "Server" },
-      { name: "Express.js", icon: "Cpu" },
-      { name: "FastAPI", icon: "Zap" }
-    ],
-    databases: [
-      { name: "MongoDB", icon: "Database" },
-      { name: "Firebase", icon: "Flame" },
-      { name: "Supabase", icon: "Zap" }
-    ],
-    aiData: [
-      { name: "NLP", icon: "BrainCircuit" },
-      { name: "TF-IDF", icon: "Binary" },
-      { name: "LLM Integration", icon: "Bot" },
-      { name: "Data Annotation", icon: "CheckCircle2" },
-      { name: "AI Tools", icon: "Sparkles" }
-    ],
-    tools: [
-      { name: "Git", icon: "GitBranch" },
-      { name: "GitHub", icon: "Github" },
-      { name: "Postman", icon: "Send" },
-      { name: "Base44", icon: "Terminal" }
-    ],
-    aiDevTools: [
-      { name: "Claude Code", icon: "Bot" },
-      { name: "Antigravity", icon: "Sparkles" },
-      { name: "AI Tools", icon: "Cpu" }
-    ],
-    vibeCoder: {
-      name: "✦ Vibe Coder",
-      tagline: "Developer Identity",
-      badge: "VIBE CODER ⚡"
-    }
+    items: [
+      // Programming Languages
+      { name: "Java", category: "programming", level: "Proficient", icon: "Coffee", desc: "Object-oriented programming, data structures, and algorithmic foundations" },
+      { name: "Python", category: "programming", level: "Proficient", icon: "Terminal", desc: "Scripting, backend logic, data processing, and automation" },
+      { name: "JavaScript (ES6+)", category: "programming", level: "Advanced", icon: "Code2", desc: "Modern syntax, async operations, DOM manipulation, and interactive web architecture" },
+      { name: "TypeScript", category: "programming", level: "Intermediate", icon: "FileCode", desc: "Static typing, component contracts, and scalable JavaScript applications" },
+      { name: "C / C++", category: "programming", level: "Intermediate", icon: "Binary", desc: "Memory fundamentals, procedural programming, and low-level algorithms" },
+      { name: "SQL", category: "programming", level: "Proficient", icon: "Database", desc: "Relational queries, schema design, joins, and aggregation" },
+
+      // Frontend Development
+      { name: "React.js", category: "frontend", level: "Advanced", icon: "Layers", desc: "Component architecture, hooks, state management, and modern SPA design" },
+      { name: "HTML5", category: "frontend", level: "Advanced", icon: "Globe", desc: "Semantic layout, accessibility (a11y), forms, and modern web APIs" },
+      { name: "CSS3 / Modern CSS", category: "frontend", level: "Advanced", icon: "Palette", desc: "Flexbox, CSS Grid, custom properties, keyframe animations, and glassmorphism" },
+      { name: "Responsive Web Design", category: "frontend", level: "Advanced", icon: "Smartphone", desc: "Mobile-first layouts, media queries, and multi-device usability" },
+      { name: "UI/UX & Component Design", category: "frontend", level: "Proficient", icon: "CheckCircle2", desc: "Design systems, typography hierarchy, micro-interactions, and visual harmony" },
+
+      // Backend Development
+      { name: "Node.js", category: "backend", level: "Intermediate", icon: "Server", desc: "Event-driven runtime, server-side JavaScript, and modular services" },
+      { name: "Express.js", category: "backend", level: "Intermediate", icon: "Cpu", desc: "RESTful API routing, middleware integration, and request handling" },
+      { name: "RESTful APIs", category: "backend", level: "Proficient", icon: "Zap", desc: "API endpoint design, JSON serialization, HTTP status conventions, and integration" },
+
+      // Databases
+      { name: "MongoDB", category: "databases", level: "Proficient", icon: "Database", desc: "NoSQL document collections, aggregation pipelines, and Mongoose modeling" },
+      { name: "MySQL", category: "databases", level: "Proficient", icon: "HardDrive", desc: "Relational table normalization, primary/foreign keys, and data integrity" },
+      { name: "Firebase", category: "databases", level: "Intermediate", icon: "Flame", desc: "Cloud Firestore, real-time database, and cloud authentication" },
+      { name: "Supabase", category: "databases", level: "Intermediate", icon: "Zap", desc: "PostgreSQL-backed serverless platform and instant APIs" },
+
+      // Developer Tools
+      { name: "Git", category: "tools", level: "Advanced", icon: "GitBranch", desc: "Version control, branching, merging, and commit history management" },
+      { name: "GitHub", category: "tools", level: "Advanced", icon: "Github", desc: "Remote repositories, collaborative workflows, and code hosting" },
+      { name: "VS Code", category: "tools", level: "Advanced", icon: "Code", desc: "Extensions, debugging configurations, and streamlined developer environment" },
+      { name: "Postman", category: "tools", level: "Proficient", icon: "Send", desc: "API testing, endpoint validation, header inspection, and payload debugging" },
+      { name: "Chrome DevTools", category: "tools", level: "Advanced", icon: "Terminal", desc: "Performance profiling, network analysis, and DOM debugging" },
+
+      // AI & Emerging Technologies
+      { name: "Generative AI Tools", category: "ai", level: "Proficient", icon: "Sparkles", desc: "AI-assisted developer productivity, prompt engineering, and intelligent workflows" },
+      { name: "LLM Integration", category: "ai", level: "Intermediate", icon: "Bot", desc: "Integrating language models into web applications for candidate and text insights" },
+      { name: "Data Annotation & Validation", category: "ai", level: "Proficient", icon: "CheckCircle2", desc: "Dataset labeling, quality control, anomaly detection, and training set validation" },
+      { name: "TF-IDF & Text Analysis", category: "ai", level: "Intermediate", icon: "Binary", desc: "Keyword vectorization, resume scoring, and content relevance matching" },
+
+      // Professional Skills
+      { name: "Point of Contact (POC) Mgmt", category: "professional", level: "Expert", icon: "ShieldCheck", desc: "Liaising between leadership, industry guests, faculty, and student teams" },
+      { name: "Team Leadership & Mentorship", category: "professional", level: "Advanced", icon: "Award", desc: "Guiding peer groups, dividing milestones, and fostering collaborative success" },
+      { name: "Event Coordination", category: "professional", level: "Advanced", icon: "Calendar", desc: "Planning, organizing, and executing campus tech workshops and quizzes" },
+      { name: "Marketing & Communications", category: "professional", level: "Advanced", icon: "Send", desc: "Public announcements, audience engagement, and community messaging" },
+      { name: "Problem Solving & Analysis", category: "professional", level: "Advanced", icon: "BrainCircuit", desc: "Structured approach to algorithmic challenges and system debugging" }
+    ]
   },
 
   featuredProjects: [
@@ -181,73 +306,90 @@ export const portfolioData = {
       id: "resume-analyzer-agent",
       title: "Resume Analyzer Agent",
       subtitle: "AI-Powered Candidate & Job Matching Platform",
-      description: "AI-powered resume analysis application that analyzes resumes against job descriptions and generates candidate matching insights.",
-      tech: ["React", "TypeScript", "FastAPI", "Python", "AI / LLM"],
+      description: "An intelligent web application that evaluates technical resumes against target job descriptions, providing candidate compatibility scores, missing skill alerts, and semantic matching insights.",
+      tech: ["React.js", "TypeScript", "FastAPI", "Python", "TF-IDF / AI"],
       features: [
-        "Resume upload",
-        "Job description analysis",
-        "Skill matching",
-        "TF-IDF",
-        "Information extraction",
-        "LLM integration",
-        "Candidate matching"
+        "Resume document parsing and extraction",
+        "Target job description alignment analysis",
+        "Automated skill & keyword matching via TF-IDF",
+        "Candidate qualification score card",
+        "LLM-powered recommendations for applicants"
       ],
       github: "https://github.com/SyedAman1907/Resume-Analyzer-Agent",
+      liveDemo: null,
       featured: true,
-      category: "AI / ML"
+      category: "AI & Web Apps"
     },
     {
       id: "househunt-rental",
       title: "HouseHunt – Rental Management Platform",
-      subtitle: "Full-Stack Rental & Tenant Discovery Platform",
-      description: "Full-stack rental management platform for property discovery, listing management, appointment booking and communication between renters and property owners.",
-      tech: ["React", "Node.js", "Express.js", "MongoDB"],
+      subtitle: "Full-Stack Rental & Tenant Discovery Solution",
+      description: "A comprehensive full-stack rental platform streamlining property discovery, listing management, schedule viewing bookings, and direct communication between tenants and property owners.",
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "CSS3"],
       features: [
-        "Property discovery",
-        "Listing management",
-        "Appointment booking",
-        "Owner communication"
+        "Property discovery and search filters",
+        "Landlord listing submission & management dashboard",
+        "Tenant tour scheduling & appointment booking",
+        "Direct inquiry messaging between renters and owners",
+        "Responsive, mobile-optimized property cards"
       ],
       github: "https://github.com/SyedAman1907/HouseHunt",
+      liveDemo: null,
       featured: true,
       category: "Full Stack"
     },
     {
       id: "ai-news-intelligence",
       title: "AI-News-Intelligence",
-      subtitle: "AI Research & News Intelligence Dashboard",
-      description: "AI-powered news intelligence platform that collects AI news and research from multiple sources, processes and classifies information, and presents important updates through a clean dashboard.",
-      tech: ["React", "JavaScript", "Node.js", "AI / LLM", "RSS", "SMTP", "SQLite"],
+      subtitle: "Automated AI Research & News Aggregator",
+      description: "A dynamic news intelligence dashboard that continuously aggregates AI research publications and industry updates from multiple feeds, classifying articles with automated categorization and instant notifications.",
+      tech: ["React.js", "JavaScript", "Node.js", "RSS Feed Aggregation", "SQLite"],
       features: [
-        "AI news classification",
-        "RSS aggregation",
-        "AI research/news filtering",
-        "Automated news updates",
-        "AI categorization",
-        "News dashboard",
-        "Email notifications",
-        "Multiple recipient support"
+        "Real-time RSS news aggregation across AI sources",
+        "Automated semantic categorization and tagging",
+        "Interactive dashboard with instant search & filter",
+        "Email dispatch and notification alerts for major updates",
+        "Clean, distraction-free reading layout"
       ],
       github: "https://github.com/SyedAman1907/AI-News-Intelligence",
+      liveDemo: null,
       featured: true,
-      category: "AI / ML"
+      category: "AI & Web Apps"
     }
   ],
 
-  leadership: [
+  certifications: [
     {
-      organization: "CISC Club",
-      role: "Student Coordinator",
-      period: "2024 – 2026",
-      description: "Supported student teams in technical events and workshops and assisted event planning, coordination, communication and community building.",
-      badge: "Student Leadership"
+      title: "MongoDB × ICT Academy Industry Immersion Day",
+      issuer: "MongoDB × ICT Academy",
+      period: "2025 – 2026",
+      badge: "4th Place Leaderboard",
+      skills: ["MongoDB", "NoSQL Architecture", "Document Queries", "Cloud Databases"],
+      description: "Participated in hands-on industry immersion, completing practical database challenges and finishing 4th in the competitive student quiz leaderboard."
     },
     {
-      organization: "Google Student Ambassador",
-      role: "Google Student Ambassador",
-      period: "Completed",
-      description: "Organized technical workshops and coding competitions, coordinated student teams and participants, and handled event planning, technical outreach and community activities.",
-      badge: "Completed"
+      title: "Google Student Ambassador Leadership",
+      issuer: "Google Student Community",
+      period: "Campus Ambassador",
+      badge: "Student Leadership",
+      skills: ["Community Building", "Technical Outreach", "Event Coordination", "Public Speaking"],
+      description: "Completed ambassadorship representing Google developer technologies, organizing campus workshops, and mentoring student developers."
+    },
+    {
+      title: "Modern Frontend Web Development",
+      issuer: "Web Technology Foundations",
+      period: "Academic & Practical",
+      badge: "Frontend Specialist",
+      skills: ["React.js", "JavaScript ES6+", "HTML5 / CSS3", "Responsive Design"],
+      description: "Demonstrated competence in modern component-driven web application development, responsive layouts, and state management."
+    },
+    {
+      title: "Data Structures & Algorithmic Problem Solving",
+      issuer: "RGMCET Computer Science Department",
+      period: "Foundational Coursework",
+      badge: "Core Engineering",
+      skills: ["Data Structures", "Algorithms", "Java / C++", "Analytical Thinking"],
+      description: "Successfully solved 100+ algorithmic and data structure problems with focus on time-space complexity optimization."
     }
   ]
 };

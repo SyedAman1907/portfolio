@@ -3,12 +3,12 @@ import BackgroundAnimation from './components/BackgroundAnimation';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Education from './components/Education';
-import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import GitHubProjects from './components/GitHubProjects';
-import Leadership from './components/Leadership';
+import Experience from './components/Experience';
+import Education from './components/Education';
+import Certifications from './components/Certifications';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -16,27 +16,27 @@ import Footer from './components/Footer';
 export default function App() {
   return (
     <div style={{ position: 'relative', minHeight: '100vh', overflowX: 'hidden' }}>
-      {/* Dynamic Animated Background (Grid, Emerald Blobs, Canvas Particles, Mouse Glow) */}
+      {/* Dynamic Animated Ambient Background (Dark/Light Responsive) */}
       <BackgroundAnimation />
 
-      {/* Sticky Glassmorphic Navbar */}
+      {/* Sticky Glassmorphic Navbar with Theme Switcher & ScrollSpy */}
       <Navbar />
 
-      {/* Page Main Sections */}
+      {/* Main Portfolio Sections */}
       <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <About />
         <Skills />
-        <Experience />
-        <Education />
         <Projects />
         <GitHubProjects />
-        <Leadership />
+        <Experience />
+        <Education />
+        <Certifications />
         <Resume />
         <Contact />
       </main>
 
-      {/* Footer */}
+      {/* Minimal Footer */}
       <Footer />
     </div>
   );

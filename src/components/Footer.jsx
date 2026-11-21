@@ -1,6 +1,6 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail, Heart } from 'lucide-react';
 
 export default function Footer() {
   const { personal } = portfolioData;
@@ -12,10 +12,11 @@ export default function Footer() {
   return (
     <footer
       style={{
-        borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-        background: 'rgba(3, 8, 6, 0.9)',
+        borderTop: '1px solid var(--border-subtle)',
+        background: 'var(--footer-bg)',
         backdropFilter: 'blur(16px)',
-        padding: '1.75rem 0 1.25rem',
+        WebkitBackdropFilter: 'blur(16px)',
+        padding: '2.5rem 0 2rem',
         position: 'relative',
         zIndex: 10
       }}
@@ -25,104 +26,107 @@ export default function Footer() {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.25rem'
+            gap: '1.75rem'
           }}
         >
+          {/* Top Bar: Brand & Quick Links */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
               flexWrap: 'wrap',
-              gap: '1rem'
+              gap: '1.25rem'
             }}
           >
-            {/* Brand Logo & Info */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+            {/* Brand */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
               <span
                 style={{
                   fontFamily: 'var(--font-heading)',
                   fontWeight: 800,
-                  fontSize: '1.1rem',
-                  color: '#ffffff'
+                  fontSize: '1.2rem',
+                  color: 'var(--text-main)',
+                  letterSpacing: '-0.02em'
                 }}
               >
-                Syed <span style={{ color: 'var(--highlight-green)' }}>Aman</span> Mirzanullah
+                {personal.name}
               </span>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-dim)', maxWidth: '420px' }}>
-                Full Stack & AI Developer. Building resilient web apps, intelligent agents, and scalable distributed architectures.
+              <p style={{ fontSize: '0.84rem', color: 'var(--text-dim)', maxWidth: '440px' }}>
+                B.Tech Student • Web Developer • Technology Enthusiast @ RGMCET
               </p>
             </div>
 
-            {/* Social Links & Back to Top */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            {/* Social Links & Back to top */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                 <a
                   href={personal.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-glass btn-sm"
-                  style={{ borderRadius: 'var(--radius-full)', padding: '0.4rem 0.65rem' }}
+                  className="btn btn-outline btn-sm"
+                  style={{ borderRadius: 'var(--radius-full)', padding: '0.45rem 0.75rem' }}
                   aria-label="GitHub Profile"
                 >
-                  <Github size={14} />
+                  <Github size={15} />
                 </a>
                 <a
                   href={personal.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-glass btn-sm"
-                  style={{ borderRadius: 'var(--radius-full)', padding: '0.4rem 0.65rem' }}
+                  className="btn btn-outline btn-sm"
+                  style={{ borderRadius: 'var(--radius-full)', padding: '0.45rem 0.75rem' }}
                   aria-label="LinkedIn Profile"
                 >
-                  <Linkedin size={14} />
+                  <Linkedin size={15} />
                 </a>
                 <a
                   href={`mailto:${personal.email}`}
-                  className="btn btn-glass btn-sm"
-                  style={{ borderRadius: 'var(--radius-full)', padding: '0.4rem 0.65rem' }}
-                  aria-label="Send Email"
+                  className="btn btn-outline btn-sm"
+                  style={{ borderRadius: 'var(--radius-full)', padding: '0.45rem 0.75rem' }}
+                  aria-label="Send direct email"
                 >
-                  <Mail size={14} />
+                  <Mail size={15} />
                 </a>
               </div>
 
               <button
                 onClick={scrollToTop}
-                className="btn btn-glass btn-sm"
+                className="btn btn-outline btn-sm"
                 style={{
                   borderRadius: 'var(--radius-full)',
-                  padding: '0.4rem 0.8rem',
-                  fontSize: '0.76rem'
+                  padding: '0.45rem 0.95rem',
+                  fontSize: '0.82rem'
                 }}
-                aria-label="Scroll to top"
+                aria-label="Scroll to top of page"
               >
-                <span>Back to top</span>
-                <ArrowUp size={13} color="var(--highlight-green)" />
+                <ArrowUp size={14} />
+                <span>Top</span>
               </button>
             </div>
           </div>
 
-          {/* Bottom Bar */}
+          {/* Bottom Bar: Copyright */}
           <div
             style={{
-              paddingTop: '0.85rem',
-              borderTop: '1px solid rgba(255, 255, 255, 0.04)',
+              paddingTop: '1.25rem',
+              borderTop: '1px solid var(--border-subtle)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
               flexWrap: 'wrap',
-              gap: '0.5rem',
-              fontSize: '0.74rem',
+              gap: '0.75rem',
+              fontSize: '0.78rem',
               fontFamily: 'var(--font-mono)',
               color: 'var(--text-dim)'
             }}
           >
             <div>
-              &copy; {new Date().getFullYear()} Syed Aman Mirzanullah. Built with React & Vite.
+              © {new Date().getFullYear()} {personal.name}. All genuine projects & academic credentials preserved.
             </div>
-            <div>
-              Luxury dark interface • Emerald glassmorphism
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <span>Designed & Built with Precision</span>
             </div>
           </div>
         </div>

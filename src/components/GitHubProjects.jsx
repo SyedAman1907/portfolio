@@ -40,14 +40,14 @@ export default function GitHubProjects() {
         <div
           className="glass-card"
           style={{
-            padding: '1.35rem 1.6rem',
-            marginBottom: '1.35rem',
+            padding: '1.45rem 1.75rem',
+            marginBottom: '1.5rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             gap: '1rem',
-            border: '1px solid rgba(52, 211, 153, 0.25)'
+            border: '1px solid var(--border-card)'
           }}
         >
           <div>
@@ -58,20 +58,20 @@ export default function GitHubProjects() {
                 gap: '0.45rem',
                 fontSize: '0.78rem',
                 fontFamily: 'var(--font-mono)',
-                color: 'var(--highlight-green)',
+                color: 'var(--text-muted)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.04em',
                 marginBottom: '0.25rem'
               }}
             >
               <Github size={14} />
-              <span>Directly connected to @{personal.githubUsername}</span>
+              <span>Directly Connected to @{personal.githubUsername}</span>
             </div>
-            <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-              GitHub <span className="gradient-text">Projects</span>
-            </h2>
-            <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-              Automatically syncing open-source codebases, experiments, and active repositories.
+            <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-main)', lineHeight: 1.2 }}>
+              GitHub <span className="monochrome-gradient">Repositories</span>
+            </h3>
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+              Real-time open source repositories, developer projects, and active experiments.
             </p>
           </div>
 
@@ -79,65 +79,45 @@ export default function GitHubProjects() {
             href={personal.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-glass btn-sm"
+            className="btn btn-outline btn-sm"
           >
-            <Github size={15} color="var(--highlight-green)" />
+            <Github size={15} />
             <span>@{personal.githubUsername}</span>
             <ArrowRight size={13} />
           </a>
         </div>
 
-        {/* Compact Filter Tabs */}
+        {/* Filter Tabs */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: '0.45rem',
-            marginBottom: '1.35rem',
+            marginBottom: '1.5rem',
             overflowX: 'auto',
             paddingBottom: '0.35rem',
-            WebkitOverflowScrolling: 'touch',
-            scrollbarWidth: 'none'
+            WebkitOverflowScrolling: 'touch'
           }}
         >
-          <style>{`
-            .filter-pill {
-              padding: 0.4rem 0.95rem;
-              border-radius: var(--radius-full);
-              font-size: 0.84rem;
-              font-family: var(--font-mono);
-              font-weight: 600;
-              transition: all 0.2s ease;
-              white-space: nowrap;
-              cursor: pointer;
-            }
-            .filter-pill:hover {
-              transform: translateY(-1px);
-            }
-            .filter-active {
-              border: 1px solid var(--highlight-green) !important;
-              background: rgba(16, 185, 129, 0.18) !important;
-              color: var(--highlight-green) !important;
-              box-shadow: 0 0 12px rgba(52, 211, 153, 0.3) !important;
-            }
-            .filter-inactive {
-              border: 1px solid rgba(255, 255, 255, 0.08) !important;
-              background: rgba(255, 255, 255, 0.025) !important;
-              color: var(--text-muted) !important;
-            }
-            .filter-inactive:hover {
-              border-color: rgba(52, 211, 153, 0.3) !important;
-              color: #ffffff !important;
-            }
-          `}</style>
-
           {FILTER_TABS.map((tab) => {
             const isActive = activeFilter === tab;
             return (
               <button
                 key={tab}
                 onClick={() => setActiveFilter(tab)}
-                className={`filter-pill ${isActive ? 'filter-active' : 'filter-inactive'}`}
+                style={{
+                  padding: '0.4rem 0.95rem',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: '0.82rem',
+                  fontFamily: 'var(--font-mono)',
+                  fontWeight: isActive ? 700 : 500,
+                  transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap',
+                  cursor: 'pointer',
+                  border: isActive ? '1px solid var(--accent-primary)' : '1px solid var(--border-card)',
+                  background: isActive ? 'var(--accent-primary)' : 'var(--bg-card)',
+                  color: isActive ? 'var(--accent-contrast)' : 'var(--text-muted)'
+                }}
               >
                 {tab}
               </button>
@@ -160,19 +140,19 @@ export default function GitHubProjects() {
                 className="glass-card"
                 style={{
                   padding: '1.25rem',
-                  height: '190px',
+                  height: '180px',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  opacity: 0.5
+                  opacity: 0.6
                 }}
               >
                 <div>
                   <div
                     style={{
-                      height: '18px',
+                      height: '16px',
                       width: '60%',
-                      background: 'rgba(52, 211, 153, 0.15)',
+                      background: 'var(--tag-bg)',
                       borderRadius: '4px',
                       marginBottom: '0.75rem'
                     }}
@@ -181,7 +161,7 @@ export default function GitHubProjects() {
                     style={{
                       height: '12px',
                       width: '85%',
-                      background: 'rgba(255, 255, 255, 0.05)',
+                      background: 'var(--tag-bg)',
                       borderRadius: '3px',
                       marginBottom: '0.45rem'
                     }}
@@ -190,17 +170,17 @@ export default function GitHubProjects() {
                     style={{
                       height: '12px',
                       width: '65%',
-                      background: 'rgba(255, 255, 255, 0.05)',
+                      background: 'var(--tag-bg)',
                       borderRadius: '3px'
                     }}
                   />
                 </div>
                 <div
                   style={{
-                    height: '28px',
+                    height: '24px',
                     width: '100%',
-                    background: 'rgba(52, 211, 153, 0.08)',
-                    borderRadius: '6px'
+                    background: 'var(--tag-bg)',
+                    borderRadius: '4px'
                   }}
                 />
               </div>
@@ -217,15 +197,15 @@ export default function GitHubProjects() {
               textAlign: 'center',
               maxWidth: '540px',
               margin: '0 auto',
-              border: '1px solid rgba(52, 211, 153, 0.2)'
+              border: '1px solid var(--border-card)'
             }}
           >
-            <AlertCircle size={28} color="var(--highlight-green)" style={{ margin: '0 auto 0.65rem' }} />
-            <h4 style={{ fontSize: '1.1rem', color: '#ffffff', marginBottom: '0.35rem' }}>
-              Repositories temporarily unavailable
+            <AlertCircle size={28} color="var(--text-main)" style={{ margin: '0 auto 0.65rem' }} />
+            <h4 style={{ fontSize: '1.05rem', color: 'var(--text-main)', marginBottom: '0.35rem' }}>
+              Repositories temporarily cached or rate-limited
             </h4>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
-              Rate limit or connection cooling reached. Inspect directly on GitHub:
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
+              Inspect live repositories and codebases directly on GitHub:
             </p>
             <a
               href={personal.githubUrl}
@@ -234,7 +214,7 @@ export default function GitHubProjects() {
               className="btn btn-primary btn-sm"
             >
               <Github size={15} />
-              <span>@{personal.githubUsername}</span>
+              <span>Explore @{personal.githubUsername}</span>
             </a>
           </div>
         )}
@@ -253,14 +233,15 @@ export default function GitHubProjects() {
                 key={repo.id}
                 className="glass-card"
                 style={{
-                  padding: '1.25rem 1.35rem',
+                  padding: '1.35rem',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between'
+                  justifyContent: 'space-between',
+                  border: '1px solid var(--border-card)'
                 }}
               >
                 <div>
-                  {/* Top: Language & Stars/Forks */}
+                  {/* Top: Language & Stars */}
                   <div
                     style={{
                       display: 'flex',
@@ -276,7 +257,7 @@ export default function GitHubProjects() {
                         gap: '0.4rem',
                         fontSize: '0.78rem',
                         fontFamily: 'var(--font-mono)',
-                        color: 'var(--highlight-green)'
+                        color: 'var(--text-secondary)'
                       }}
                     >
                       <Code2 size={14} />
@@ -288,21 +269,21 @@ export default function GitHubProjects() {
                         style={{
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '0.3rem',
+                          gap: '0.25rem',
                           fontSize: '0.78rem',
-                          color: '#cbd5e1'
+                          color: 'var(--text-muted)'
                         }}
                       >
-                        <Star size={12} color="#facc15" />
+                        <Star size={12} />
                         <span>{repo.stars}</span>
                       </span>
                       <span
                         style={{
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '0.3rem',
+                          gap: '0.25rem',
                           fontSize: '0.78rem',
-                          color: '#cbd5e1'
+                          color: 'var(--text-muted)'
                         }}
                       >
                         <GitFork size={12} />
@@ -312,22 +293,22 @@ export default function GitHubProjects() {
                   </div>
 
                   {/* Repo Title */}
-                  <h3
+                  <h4
                     style={{
-                      fontSize: '1.15rem',
+                      fontSize: '1.1rem',
                       fontWeight: 700,
-                      color: '#ffffff',
+                      color: 'var(--text-main)',
                       marginBottom: '0.35rem',
                       wordBreak: 'break-word'
                     }}
                   >
                     {repo.name}
-                  </h3>
+                  </h4>
 
                   {/* Description */}
                   <p
                     style={{
-                      fontSize: '0.88rem',
+                      fontSize: '0.86rem',
                       lineHeight: 1.55,
                       color: 'var(--text-muted)',
                       marginBottom: '0.85rem'
@@ -347,7 +328,18 @@ export default function GitHubProjects() {
                       }}
                     >
                       {repo.topics.slice(0, 4).map((topic, tIdx) => (
-                        <span key={tIdx} className="badge badge-dark" style={{ fontSize: '0.74rem', padding: '0.15rem 0.5rem' }}>
+                        <span
+                          key={tIdx}
+                          style={{
+                            fontSize: '0.72rem',
+                            fontFamily: 'var(--font-mono)',
+                            padding: '0.15rem 0.5rem',
+                            borderRadius: 'var(--radius-full)',
+                            background: 'var(--tag-bg)',
+                            border: '1px solid var(--border-subtle)',
+                            color: 'var(--text-muted)'
+                          }}
+                        >
                           #{topic}
                         </span>
                       ))}
@@ -359,7 +351,7 @@ export default function GitHubProjects() {
                 <div
                   style={{
                     paddingTop: '0.75rem',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                    borderTop: '1px solid var(--border-subtle)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -372,7 +364,7 @@ export default function GitHubProjects() {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.35rem',
-                      fontSize: '0.76rem',
+                      fontSize: '0.75rem',
                       color: 'var(--text-dim)',
                       fontFamily: 'var(--font-mono)'
                     }}
@@ -385,11 +377,11 @@ export default function GitHubProjects() {
                     href={repo.htmlUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-glass btn-sm"
-                    style={{ padding: '0.35rem 0.75rem', fontSize: '0.82rem' }}
+                    className="btn btn-outline btn-sm"
+                    style={{ padding: '0.3rem 0.7rem', fontSize: '0.8rem' }}
                   >
-                    <Github size={14} color="var(--highlight-green)" />
-                    <span>View on GitHub</span>
+                    <Github size={13} />
+                    <span>Code</span>
                   </a>
                 </div>
               </div>
@@ -408,11 +400,11 @@ export default function GitHubProjects() {
               margin: '0 auto'
             }}
           >
-            <FolderGit2 size={30} color="var(--highlight-green)" style={{ margin: '0 auto 0.5rem' }} />
-            <h4 style={{ fontSize: '1.05rem', color: '#ffffff', marginBottom: '0.25rem' }}>
+            <FolderGit2 size={28} color="var(--text-main)" style={{ margin: '0 auto 0.5rem' }} />
+            <h4 style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '0.25rem' }}>
               No repositories in this category
             </h4>
-            <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)' }}>
+            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)' }}>
               Check "All" or browse directly on GitHub.
             </p>
           </div>

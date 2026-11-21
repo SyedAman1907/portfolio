@@ -1,21 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Sun, Moon, FileText, ArrowUpRight } from 'lucide-react';
+import { portfolioData } from '../data/portfolioData';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Leadership', href: '#leadership' },
-  { label: 'Resume', href: '#resume' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Education', href: '#education' },
+  { label: 'Certifications', href: '#certifications' },
+  { label: 'Contact', href: '#contact' }
 ];
 
 export default function Navbar() {
+  const { personal } = portfolioData;
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('portfolio_theme') || 'dark';
+  });
+
+  // Apply theme to document element and persist
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('portfolio_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +38,7 @@ export default function Navbar() {
 
       // Scroll Spy
       const sections = NAV_ITEMS.map(item => item.href.substring(1));
-      const scrollPos = window.scrollY + 100;
+      const scrollPos = window.scrollY + 120;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -55,16 +70,16 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         height: 'var(--navbar-height)',
-        transition: 'all 0.3s ease',
+        transition: 'all 0.28s ease',
         background: isScrolled
-          ? 'rgba(3, 8, 6, 0.85)'
-          : 'rgba(3, 8, 6, 0.4)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
+          ? 'var(--nav-bg)'
+          : 'transparent',
+        backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+        WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
         borderBottom: isScrolled
-          ? '1px solid rgba(255, 255, 255, 0.08)'
-          : '1px solid rgba(255, 255, 255, 0.03)',
-        boxShadow: isScrolled ? '0 10px 30px rgba(0, 0, 0, 0.5)' : 'none'
+          ? '1px solid var(--border-subtle)'
+          : '1px solid transparent',
+        boxShadow: isScrolled ? '0 10px 30px rgba(0, 0, 0, 0.25)' : 'none'
       }}
     >
       <div
@@ -76,7 +91,7 @@ export default function Navbar() {
           justifyContent: 'space-between'
         }}
       >
-        {/* Logo */}
+        {/* Brand Monogram & Name */}
         <a
           href="#home"
           onClick={(e) => {
@@ -86,46 +101,51 @@ export default function Navbar() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.6rem',
+            gap: '0.65rem',
             textDecoration: 'none'
           }}
-          aria-label="Syed Aman - Home"
+          aria-label={`${personal.name} - Home`}
         >
           <div
             style={{
-              width: '32px',
-              height: '32px',
+              width: '34px',
+              height: '34px',
               borderRadius: '8px',
-              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 20, 12, 0.9) 100%)',
-              border: '1px solid rgba(52, 211, 153, 0.35)',
+              background: 'var(--accent-primary)',
+              color: 'var(--accent-contrast)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 0 12px rgba(16, 185, 129, 0.2)'
+              fontWeight: 800,
+              fontSize: '0.88rem',
+              letterSpacing: '-0.02em',
+              boxShadow: 'var(--shadow-card)',
+              transition: 'transform 0.2s ease'
             }}
           >
-            <span
-              style={{
-                fontFamily: 'var(--font-heading)',
-                fontWeight: 800,
-                fontSize: '0.9rem',
-                color: 'var(--highlight-green)'
-              }}
-            >
-              SA
-            </span>
+            {personal.monogram || 'SM'}
           </div>
+
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 700,
-                fontSize: '1.05rem',
-                letterSpacing: '-0.02em',
-                color: '#ffffff'
+                fontSize: '0.98rem',
+                color: 'var(--text-main)',
+                lineHeight: 1.2
               }}
             >
-              Syed <span style={{ color: 'var(--highlight-green)' }}>Aman</span>
+              {personal.name}
+            </span>
+            <span
+              style={{
+                fontSize: '0.72rem',
+                fontFamily: 'var(--font-mono)',
+                color: 'var(--text-dim)'
+              }}
+            >
+              Portfolio
             </span>
           </div>
         </a>
@@ -135,19 +155,18 @@ export default function Navbar() {
           style={{
             display: 'none',
             alignItems: 'center',
-            gap: '0.25rem',
-            padding: '0.25rem 0.4rem',
-            background: 'rgba(255, 255, 255, 0.025)',
-            border: '1px solid rgba(255, 255, 255, 0.07)',
-            borderRadius: 'var(--radius-full)',
-            backdropFilter: 'blur(12px)'
+            gap: '0.35rem'
           }}
           className="desktop-nav"
         >
           <style>{`
-            @media (min-width: 992px) {
-              .desktop-nav { display: flex !important; }
-              .mobile-toggle { display: none !important; }
+            @media (min-width: 900px) {
+              .desktop-nav {
+                display: flex !important;
+              }
+              .mobile-toggle-btn {
+                display: none !important;
+              }
             }
           `}</style>
 
@@ -162,14 +181,14 @@ export default function Navbar() {
                   handleLinkClick(item.href);
                 }}
                 style={{
-                  padding: '0.35rem 0.8rem',
-                  borderRadius: 'var(--radius-full)',
-                  fontSize: '0.8rem',
-                  fontWeight: 500,
-                  color: isActive ? '#02160d' : 'var(--text-muted)',
-                  backgroundColor: isActive ? 'var(--highlight-green)' : 'transparent',
-                  boxShadow: isActive ? '0 0 14px rgba(52, 211, 153, 0.45)' : 'none',
-                  transition: 'all 0.25s ease'
+                  padding: '0.42rem 0.75rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '0.86rem',
+                  fontWeight: isActive ? 600 : 500,
+                  color: isActive ? 'var(--text-main)' : 'var(--text-muted)',
+                  background: isActive ? 'var(--tag-bg)' : 'transparent',
+                  border: isActive ? '1px solid var(--border-card)' : '1px solid transparent',
+                  transition: 'all 0.2s ease'
                 }}
               >
                 {item.label}
@@ -178,99 +197,154 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Quick Contact CTA */}
-        <div style={{ display: 'none', alignItems: 'center', gap: '0.6rem' }} className="desktop-nav">
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              handleLinkClick('#contact');
+        {/* Right Action Cluster: Theme Toggle + Resume + Mobile Hamburger */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+          {/* Theme Switcher Button */}
+          <button
+            onClick={toggleTheme}
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: 'var(--radius-sm)',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-card)',
+              color: 'var(--text-main)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s ease',
+              cursor: 'pointer'
             }}
-            className="btn btn-glass btn-sm"
-            style={{ borderRadius: 'var(--radius-full)', padding: '0.35rem 0.85rem' }}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            <span>Let's Talk</span>
-            <ArrowUpRight size={13} color="var(--highlight-green)" />
-          </a>
-        </div>
+            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
 
-        {/* Mobile Hamburger Toggle Button */}
-        <button
-          className="mobile-toggle"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle navigation menu"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '38px',
-            height: '38px',
-            borderRadius: '8px',
-            background: 'rgba(255, 255, 255, 0.04)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            color: 'var(--highlight-green)'
-          }}
-        >
-          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+          {/* Quick Resume Link (Desktop) */}
+          <a
+            href={personal.resumePdf}
+            download="Shaik_Musheera_Resume.pdf"
+            className="btn btn-primary btn-sm"
+            style={{ display: 'none' }}
+            id="navbar-resume-btn"
+          >
+            <style>{`
+              @media (min-width: 900px) {
+                #navbar-resume-btn {
+                  display: inline-flex !important;
+                }
+              }
+            `}</style>
+            <FileText size={14} />
+            <span>Resume</span>
+          </a>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="mobile-toggle-btn"
+            style={{
+              width: '38px',
+              height: '38px',
+              borderRadius: 'var(--radius-sm)',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-card)',
+              color: 'var(--text-main)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div
           style={{
-            position: 'absolute',
+            position: 'fixed',
             top: 'var(--navbar-height)',
             left: 0,
             right: 0,
-            background: 'rgba(3, 8, 6, 0.96)',
-            backdropFilter: 'blur(20px)',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-            padding: '1rem 1.25rem 1.5rem',
+            bottom: 0,
+            background: 'var(--nav-bg)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            borderTop: '1px solid var(--border-subtle)',
+            padding: '1.5rem 1.25rem',
             display: 'flex',
             flexDirection: 'column',
-            gap: '0.5rem',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.8)'
+            justifyContent: 'space-between',
+            zIndex: 49,
+            overflowY: 'auto'
           }}
         >
-          {NAV_ITEMS.map((item) => {
-            const isActive = activeSection === item.href.substring(1);
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick(item.href);
-                }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '0.65rem 0.9rem',
-                  borderRadius: 'var(--radius-sm)',
-                  background: isActive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.02)',
-                  border: isActive ? '1px solid var(--highlight-green)' : '1px solid rgba(255, 255, 255, 0.04)',
-                  color: isActive ? 'var(--highlight-green)' : 'var(--text-main)',
-                  fontWeight: 600,
-                  fontSize: '0.9rem'
-                }}
-              >
-                <span>{item.label}</span>
-                {isActive && (
-                  <span
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      background: 'var(--highlight-green)',
-                      boxShadow: '0 0 6px var(--highlight-green)'
-                    }}
-                  />
-                )}
-              </a>
-            );
-          })}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(item.href);
+                  }}
+                  style={{
+                    padding: '0.85rem 1rem',
+                    borderRadius: 'var(--radius-sm)',
+                    fontSize: '1.05rem',
+                    fontWeight: isActive ? 700 : 500,
+                    color: isActive ? 'var(--text-main)' : 'var(--text-muted)',
+                    background: isActive ? 'var(--tag-bg)' : 'transparent',
+                    border: isActive ? '1px solid var(--border-card)' : '1px solid transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}
+                >
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <div
+                      style={{
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        background: 'var(--accent-primary)'
+                      }}
+                    />
+                  )}
+                </a>
+              );
+            })}
+          </div>
+
+          <div
+            style={{
+              paddingTop: '1.5rem',
+              borderTop: '1px solid var(--border-subtle)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}
+          >
+            <a
+              href={personal.resumePdf}
+              download="Shaik_Musheera_Resume.pdf"
+              className="btn btn-primary"
+              style={{ width: '100%' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <FileText size={16} />
+              <span>Download Official Resume</span>
+            </a>
+          </div>
         </div>
       )}
     </header>

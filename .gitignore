@@ -4,3 +4,7 @@ node_modules/
 dist/
 build/
 .vite/
+
+desktop.ini
+*.ini
+.DS_Store

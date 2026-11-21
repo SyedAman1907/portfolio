@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { portfolioData } from '../data/portfolioData';
 import {
   Code,
@@ -24,7 +24,10 @@ import {
   Github,
   Send,
   Flame,
-  Rocket
+  Award,
+  Calendar,
+  ShieldCheck,
+  Sparkles
 } from 'lucide-react';
 
 const iconMap = {
@@ -49,245 +52,165 @@ const iconMap = {
   Github,
   Send,
   Flame,
-  Rocket,
+  Award,
+  Calendar,
+  ShieldCheck,
+  Sparkles,
   Code
 };
 
-const skillCategories = [
-  {
-    key: 'programming',
-    title: 'Programming',
-    icon: Terminal
-  },
-  {
-    key: 'frontend',
-    title: 'Frontend',
-    icon: Layers
-  },
-  {
-    key: 'backend',
-    title: 'Backend',
-    icon: Server
-  },
-  {
-    key: 'databases',
-    title: 'Databases / Services',
-    icon: Database
-  },
-  {
-    key: 'aiData',
-    title: 'AI / Data',
-    icon: BrainCircuit
-  },
-  {
-    key: 'tools',
-    title: 'Developer Tools',
-    icon: Wrench
-  },
-  {
-    key: 'aiDevTools',
-    title: 'AI Development Tools',
-    icon: Bot,
-    isPremium: true
-  }
-];
-
 export default function Skills() {
   const { skills } = portfolioData;
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  const filteredItems = activeCategory === 'all'
+    ? skills.items
+    : skills.items.filter(item => item.category === activeCategory);
 
   return (
     <section id="skills" className="section">
       <div className="container">
+        {/* Section Header */}
         <div className="section-header">
           <div className="section-tag">
-            <span>// 02. TECHNICAL SKILLS</span>
+            <span>// 02. TECHNICAL COMPETENCIES</span>
           </div>
           <h2 className="section-title">
-            Skills & <span className="gradient-text">Technologies</span>
+            Technical <span className="monochrome-gradient">Skills</span>
           </h2>
           <p className="section-subtitle">
-            Curated toolkit honed through production engineering, AI pipelines, and hands-on system architecture.
+            A comprehensive overview of programming languages, frontend/backend technologies, databases, and developer workflows I actively use.
           </p>
         </div>
 
-        {/* Grouped Compact Glass Panels Grid */}
+        {/* Category Filter Tabs */}
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-            gap: '1.15rem',
-            marginBottom: '1.35rem'
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: '0.45rem',
+            marginBottom: '2.25rem'
           }}
         >
-          {skillCategories.map((cat) => {
-            const CatIcon = cat.icon;
-            const items = skills[cat.key] || [];
-
+          {skills.categories.map((cat) => {
+            const isActive = activeCategory === cat.id;
             return (
-              <div
-                key={cat.key}
-                className="glass-card"
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
                 style={{
-                  padding: '1.25rem 1.35rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.9rem',
-                  border: cat.isPremium
-                    ? '1px solid rgba(52, 211, 153, 0.35)'
-                    : '1px solid var(--border-glass)'
+                  padding: '0.5rem 1rem',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: '0.84rem',
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: isActive ? 700 : 500,
+                  background: isActive ? 'var(--accent-primary)' : 'var(--bg-card)',
+                  color: isActive ? 'var(--accent-contrast)' : 'var(--text-muted)',
+                  border: isActive ? '1px solid var(--accent-primary)' : '1px solid var(--border-card)',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                  boxShadow: isActive ? 'var(--shadow-card)' : 'none'
                 }}
               >
-                {/* Compact Header */}
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                    <div
-                      style={{
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '8px',
-                        background: 'rgba(16, 185, 129, 0.12)',
-                        border: '1px solid rgba(52, 211, 153, 0.25)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'var(--highlight-green)'
-                      }}
-                    >
-                      <CatIcon size={17} />
-                    </div>
-                    <h3 style={{ fontSize: '1.08rem', fontWeight: 700, color: '#ffffff' }}>
-                      {cat.title}
-                    </h3>
-                  </div>
-
-                  {cat.isPremium && (
-                    <span
-                      style={{
-                        fontSize: '0.72rem',
-                        fontFamily: 'var(--font-mono)',
-                        color: 'var(--highlight-green)',
-                        background: 'rgba(16, 185, 129, 0.12)',
-                        padding: '0.18rem 0.55rem',
-                        borderRadius: 'var(--radius-full)',
-                        border: '1px solid rgba(52, 211, 153, 0.25)'
-                      }}
-                    >
-                      AI Native
-                    </span>
-                  )}
-                </div>
-
-                {/* Compact Tags */}
-                <div
-                  style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '0.5rem'
-                  }}
-                >
-                  {items.map((skill, idx) => {
-                    const IconComponent = iconMap[skill.icon] || Code;
-                    return (
-                      <div
-                        key={idx}
-                        className="glass-panel"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                          padding: '0.45rem 0.8rem',
-                          cursor: 'default',
-                          transition: 'all 0.2s ease'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.borderColor = 'rgba(52, 211, 153, 0.4)';
-                          e.currentTarget.style.transform = 'translateY(-1px)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
-                          e.currentTarget.style.transform = 'translateY(0)';
-                        }}
-                      >
-                        <IconComponent size={15} color="var(--highlight-green)" style={{ flexShrink: 0 }} />
-                        <span
-                          style={{
-                            fontSize: '0.88rem',
-                            fontWeight: 600,
-                            color: '#f1f5f9'
-                          }}
-                        >
-                          {skill.name}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+                {cat.label}
+              </button>
             );
           })}
         </div>
 
-        {/* Developer Identity / Vibe Coder Special Glass Panel */}
+        {/* Interactive Skills Grid */}
         <div
-          className="glass-card"
           style={{
-            padding: '1.2rem 1.6rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '1rem',
-            background: 'linear-gradient(135deg, rgba(7, 24, 15, 0.7) 0%, rgba(3, 10, 6, 0.85) 100%)',
-            border: '1px solid rgba(52, 211, 153, 0.3)'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 255px), 1fr))',
+            gap: '1.15rem'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <div
-              style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: '10px',
-                background: 'rgba(16, 185, 129, 0.15)',
-                border: '1px solid var(--highlight-green)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--highlight-green)',
-                boxShadow: '0 0 14px rgba(52, 211, 153, 0.35)'
-              }}
-            >
-              <Zap size={19} />
-            </div>
-            <div>
+          {filteredItems.map((item, index) => {
+            const IconComponent = iconMap[item.icon] || Code;
+
+            return (
               <div
+                key={`${item.name}-${index}`}
+                className="glass-card"
                 style={{
-                  fontSize: '0.74rem',
-                  fontFamily: 'var(--font-mono)',
-                  color: 'var(--highlight-green)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em'
+                  padding: '1.25rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  gap: '0.85rem'
                 }}
               >
-                Developer Identity
-              </div>
-              <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#ffffff' }}>
-                High-Flow Autonomous Engineering & Modern AI Tooling
-              </h4>
-            </div>
-          </div>
+                <div>
+                  {/* Top Bar: Icon & Level Tag */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      marginBottom: '0.85rem'
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: '38px',
+                        height: '38px',
+                        borderRadius: 'var(--radius-sm)',
+                        background: 'var(--tag-bg)',
+                        border: '1px solid var(--tag-border)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'var(--text-main)'
+                      }}
+                    >
+                      <IconComponent size={20} />
+                    </div>
 
-          {/* Premium Glowing Vibe Coder Badge */}
-          <div className="badge-vibe-coder" style={{ padding: '0.5rem 1.2rem', fontSize: '0.92rem' }}>
-            <span style={{ color: 'var(--highlight-green)' }}>✦</span>
-            <span>VIBE CODER</span>
-            <span style={{ color: '#facc15' }}>⚡</span>
-          </div>
+                    <span
+                      style={{
+                        fontSize: '0.72rem',
+                        fontFamily: 'var(--font-mono)',
+                        padding: '0.18rem 0.55rem',
+                        borderRadius: 'var(--radius-full)',
+                        background: 'var(--tag-bg)',
+                        border: '1px solid var(--border-subtle)',
+                        color: 'var(--text-dim)',
+                        fontWeight: 600
+                      }}
+                    >
+                      {item.level}
+                    </span>
+                  </div>
+
+                  {/* Skill Name */}
+                  <h3
+                    style={{
+                      fontSize: '1.02rem',
+                      fontWeight: 700,
+                      color: 'var(--text-main)',
+                      marginBottom: '0.35rem'
+                    }}
+                  >
+                    {item.name}
+                  </h3>
+
+                  {/* Skill Description */}
+                  <p
+                    style={{
+                      fontSize: '0.82rem',
+                      color: 'var(--text-muted)',
+                      lineHeight: 1.55
+                    }}
+                  >
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
